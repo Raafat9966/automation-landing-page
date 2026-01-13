@@ -40,6 +40,14 @@ export const de = {
     ],
     learnMore: "Mehr erfahren"
   },
+  aiDemo: {
+    title: "KI-Agenten in Aktion",
+    subtitle: "Erleben Sie, wie unsere KI-Agenten Ihre Befehle in automatisierte Aktionen umwandeln. Probieren Sie es unten aus!",
+    inputPlaceholder: "Bitten Sie den Agenten, etwas zu tun (z.B. 'Meinen Tagesablauf organisieren')",
+    buttonLabel: "Agent ausführen",
+    responseTitle: "Agenten-Antwort",
+    mockResponse: "Ich habe Ihre Anfrage analysiert. Basierend auf Ihrer Eingabe kann ich diesen Workflow automatisieren, indem ich Ihren Kalender verbinde, Aufgaben mittels KI priorisiere und automatisierte Erinnerungen einrichte. Ihr Workflow ist nun für maximale Effizienz optimiert."
+  },
   about: {
     title: "Über",
     description1: "Wir bei FlowToWork glauben, dass sich Unternehmen auf das konzentrieren sollten, was sie am besten können – während intelligente Automatisierung den Rest erledigt.",

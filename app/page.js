@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import WorkflowCards from './components/WorkflowCards'
+import AiAgentDemo from './components/AiAgentDemo'
 import About from './components/About'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <WorkflowCards />
+      <AiAgentDemo />
       <About />
       <ContactForm />
       <Footer />
