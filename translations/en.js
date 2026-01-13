@@ -3,6 +3,7 @@ export const en = {
     home: "Home",
     workflows: "Workflows",
     about: "About",
+    aiAgent: "AI Agent",
     contact: "Contact",
     getStarted: "Get Started"
   },

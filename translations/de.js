@@ -3,6 +3,7 @@ export const de = {
     home: "Startseite",
     workflows: "Workflows",
     about: "Über uns",
+    aiAgent: "KI-Agent",
     contact: "Kontakt",
     getStarted: "Jetzt starten"
   },
