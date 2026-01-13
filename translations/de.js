@@ -46,6 +46,7 @@ export const de = {
     inputPlaceholder: "Bitten Sie den Agenten, etwas zu tun (z.B. 'Meinen Tagesablauf organisieren')",
     buttonLabel: "Agent ausführen",
     responseTitle: "Agenten-Antwort",
+    processingLabel: "Verarbeitung...",
     mockResponse: "Ich habe Ihre Anfrage analysiert. Basierend auf Ihrer Eingabe kann ich diesen Workflow automatisieren, indem ich Ihren Kalender verbinde, Aufgaben mittels KI priorisiere und automatisierte Erinnerungen einrichte. Ihr Workflow ist nun für maximale Effizienz optimiert."
   },
   about: {

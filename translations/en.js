@@ -46,6 +46,7 @@ export const en = {
     inputPlaceholder: "Ask the agent to do something (e.g., 'Organize my daily schedule')",
     buttonLabel: "Run Agent",
     responseTitle: "Agent Response",
+    processingLabel: "Processing...",
     mockResponse: "I've analyzed your request. Based on your prompt, I can automate this workflow by connecting your calendar, prioritizing tasks using AI, and setting up automated reminders. Your workflow is now optimized for maximum efficiency."
   },
   about: {
