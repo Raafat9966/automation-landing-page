@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function ContactForm() {
+  const { translations } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,10 +35,10 @@ export default function ContactForm() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Get in Touch
+            {translations.contact.title}
           </h2>
           <p className="text-xl text-gray-600">
-            Ready to automate your workflow? Let&apos;s talk about your needs.
+            {translations.contact.subtitle}
           </p>
         </div>
 
@@ -48,14 +50,14 @@ export default function ContactForm() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-              <p className="text-gray-600">We&apos;ll get back to you as soon as possible.</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{translations.contact.form.successTitle}</h3>
+              <p className="text-gray-600">{translations.contact.form.successMessage}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Name
+                  {translations.contact.form.name}
                 </label>
                 <input
                   type="text"
@@ -65,14 +67,14 @@ export default function ContactForm() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 outline-none"
-                  placeholder="Your full name"
-                  aria-label="Your name"
+                  placeholder={translations.contact.form.namePlaceholder}
+                  aria-label={translations.contact.form.name}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Email
+                  {translations.contact.form.email}
                 </label>
                 <input
                   type="email"
@@ -82,14 +84,14 @@ export default function ContactForm() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 outline-none"
-                  placeholder="your@email.com"
-                  aria-label="Your email address"
+                  placeholder={translations.contact.form.emailPlaceholder}
+                  aria-label={translations.contact.form.email}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Message
+                  {translations.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -99,24 +101,24 @@ export default function ContactForm() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 outline-none resize-none"
-                  placeholder="Tell us about your automation needs..."
-                  aria-label="Your message"
+                  placeholder={translations.contact.form.messagePlaceholder}
+                  aria-label={translations.contact.form.message}
                 />
               </div>
 
               <button
                 type="submit"
                 className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-lg py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-highlight/50"
-                aria-label="Send message"
+                aria-label={translations.contact.form.send}
               >
-                Send Message
+                {translations.contact.form.send}
               </button>
             </form>
           )}
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">Or reach us directly:</p>
+          <p className="text-gray-600 mb-4">{translations.contact.direct}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 text-gray-700">
             <a
               href="mailto:hello@flowtowork.com"

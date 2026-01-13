@@ -1,4 +1,9 @@
+'use client'
+
+import { useLanguage } from '../../context/LanguageContext'
+
 export default function Footer() {
+  const { translations } = useLanguage()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -8,54 +13,54 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold text-accent mb-4">FlowToWork</h3>
             <p className="text-gray-400 leading-relaxed">
-              Empowering businesses with intelligent automation and AI-driven workflows.
+              {translations.footer.description}
             </p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{translations.footer.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#home"
                   className="text-gray-400 hover:text-accent transition-colors duration-300"
-                  aria-label="Navigate to Home"
+                  aria-label={translations.nav.home}
                 >
-                  Home
+                  {translations.nav.home}
                 </a>
               </li>
               <li>
                 <a
                   href="#workflows"
                   className="text-gray-400 hover:text-accent transition-colors duration-300"
-                  aria-label="Navigate to Workflows"
+                  aria-label={translations.nav.workflows}
                 >
-                  Workflows
+                  {translations.nav.workflows}
                 </a>
               </li>
               <li>
                 <a
                   href="#about"
                   className="text-gray-400 hover:text-accent transition-colors duration-300"
-                  aria-label="Navigate to About"
+                  aria-label={translations.nav.about}
                 >
-                  About
+                  {translations.nav.about}
                 </a>
               </li>
               <li>
                 <a
                   href="#contact"
                   className="text-gray-400 hover:text-accent transition-colors duration-300"
-                  aria-label="Navigate to Contact"
+                  aria-label={translations.nav.contact}
                 >
-                  Contact
+                  {translations.nav.contact}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Connect With Us</h4>
+            <h4 className="text-lg font-semibold mb-4">{translations.footer.connect}</h4>
             <div className="flex gap-4">
               <a
                 href="https://twitter.com"
@@ -96,7 +101,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400">
-            © {currentYear} FlowToWork. All rights reserved. | Built with Next.js & Tailwind CSS
+            © {currentYear} FlowToWork. {translations.footer.rights}
           </p>
         </div>
       </div>
