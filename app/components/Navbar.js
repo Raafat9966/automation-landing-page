@@ -178,7 +178,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => scrollToSection('contact')}
-            className="block w-full text-left px-4 py-3 text-white bg-primary hover:bg-secondary rounded-lg transition-colors font-medium text-center"
+            className="block w-full text-left px-4 py-3 text-white bg-primary hover:bg-secondary rounded-lg transition-colors font-medium"
           >
             {translations.nav.contact}
           </button>
