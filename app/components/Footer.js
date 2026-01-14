@@ -49,6 +49,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="#waitlist"
+                  className="text-gray-400 hover:text-accent transition-colors duration-300"
+                  aria-label={translations.nav.waitlist}
+                >
+                  {translations.nav.waitlist}
+                </a>
+              </li>
+              <li>
+                <a
                   href="#contact"
                   className="text-gray-400 hover:text-accent transition-colors duration-300"
                   aria-label={translations.nav.contact}

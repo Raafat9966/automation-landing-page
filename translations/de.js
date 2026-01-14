@@ -4,6 +4,7 @@ export const de = {
     workflows: "Workflows",
     about: "Über uns",
     aiAgent: "KI-Agent",
+    waitlist: "Warteliste",
     contact: "Kontakt",
     getStarted: "Jetzt starten"
   },
@@ -95,6 +96,32 @@ export const de = {
     quickLinks: "Schnellzugriff",
     connect: "Verbinden Sie sich mit uns",
     rights: "Alle Rechte vorbehalten. | Erstellt mit Next.js & Tailwind CSS"
+  },
+  waitlist: {
+    title: "Treten Sie der FlowToWork-Warteliste bei",
+    subtitle: "Gehören Sie zu den Ersten, die Zugang zu leistungsstarken Automatisierungs-Workflows und KI-Agenten-Lösungen erhalten.",
+    form: {
+      name: "Vollständiger Name",
+      namePlaceholder: "Ihr vollständiger Name",
+      email: "E-Mail-Adresse",
+      emailPlaceholder: "ihre@email.de",
+      company: "Unternehmen (optional)",
+      companyPlaceholder: "Ihr Unternehmensname",
+      interest: "Hauptinteresse",
+      interestOptions: {
+        placeholder: "Wählen Sie Ihr Hauptinteresse",
+        automation: "Automatisierungs-Workflows",
+        agents: "KI-Agenten",
+        both: "Beides"
+      },
+      submit: "Warteliste beitreten",
+      loading: "Beitritt...",
+      successTitle: "Sie stehen auf der Liste!",
+      successMessage: "Vielen Dank für Ihr Interesse. Wir werden uns mit exklusivem Zugang und Updates bei Ihnen melden.",
+      error: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
+      joinAnother: "Mit einer anderen E-Mail beitreten",
+      spamNote: "Kein Spam. Nur Produkt-Updates und früher Zugang."
+    }
   },
   education: {
     title: "Automatisierung vs. KI-Agenten – Was ist der Unterschied?",

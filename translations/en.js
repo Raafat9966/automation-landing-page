@@ -4,6 +4,7 @@ export const en = {
     workflows: "Workflows",
     about: "About",
     aiAgent: "AI Agent",
+    waitlist: "Waitlist",
     contact: "Contact",
     getStarted: "Get Started"
   },
@@ -95,6 +96,32 @@ export const en = {
     quickLinks: "Quick Links",
     connect: "Connect With Us",
     rights: "All rights reserved. | Built with Next.js & Tailwind CSS"
+  },
+  waitlist: {
+    title: "Join the FlowToWork Waiting List",
+    subtitle: "Be the first to access powerful automation workflows and AI agent solutions.",
+    form: {
+      name: "Full Name",
+      namePlaceholder: "Your full name",
+      email: "Email Address",
+      emailPlaceholder: "your@email.com",
+      company: "Company (optional)",
+      companyPlaceholder: "Your company name",
+      interest: "Primary Interest",
+      interestOptions: {
+        placeholder: "Select your primary interest",
+        automation: "Automation workflows",
+        agents: "AI agents",
+        both: "Both"
+      },
+      submit: "Join the Waiting List",
+      loading: "Joining...",
+      successTitle: "You're on the list!",
+      successMessage: "Thank you for your interest. We'll be in touch with early access and updates.",
+      error: "Something went wrong. Please try again.",
+      joinAnother: "Join with another email",
+      spamNote: "No spam. Only product updates and early access."
+    }
   },
   education: {
     title: "Automation vs AI Agents — What’s the Difference?",

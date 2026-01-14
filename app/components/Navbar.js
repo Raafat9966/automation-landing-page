@@ -72,6 +72,13 @@ export default function Navbar() {
               {translations.nav.aiAgent}
             </button>
             <button
+              onClick={() => scrollToSection('waitlist')}
+              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+              aria-label={translations.nav.waitlist}
+            >
+              {translations.nav.waitlist}
+            </button>
+            <button
               onClick={() => scrollToSection('contact')}
               className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
               aria-label={translations.nav.contact}
@@ -175,6 +182,12 @@ export default function Navbar() {
             className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
           >
             {translations.nav.aiAgent}
+          </button>
+          <button
+            onClick={() => scrollToSection('waitlist')}
+            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+          >
+            {translations.nav.waitlist}
           </button>
           <button
             onClick={() => scrollToSection('contact')}
