@@ -29,21 +29,21 @@ export default function Hero() {
           <span className="text-accent">{translations.hero.title2}</span>
         </h1>
 
-        <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed sm:leading-loose">
           {translations.hero.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
           <button
             onClick={scrollToContact}
-            className="w-full sm:w-auto bg-highlight hover:bg-highlight/90 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-highlight/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-highlight/50"
+            className="w-full sm:w-auto bg-highlight hover:bg-highlight/90 text-white font-bold text-lg px-12 py-4 rounded-xl shadow-2xl hover:shadow-highlight/50 transition-all duration-300 transform hover:scale-105 focus:outline-none"
             aria-label={translations.hero.cta}
           >
             {translations.hero.cta}
           </button>
           <button
             onClick={() => setIsWaitlistModalOpen(true)}
-            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 font-bold text-lg px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 backdrop-blur-sm"
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 font-bold text-lg px-12 py-4 rounded-xl shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none backdrop-blur-sm"
             aria-label={translations.waitlist.form.submit}
           >
             {translations.waitlist.form.submit}

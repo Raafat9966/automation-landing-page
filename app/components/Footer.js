@@ -17,7 +17,7 @@ export default function Footer() {
             </p>
             <button
               onClick={() => setIsWaitlistModalOpen(true)}
-              className="bg-highlight hover:bg-highlight/90 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+              className="bg-highlight hover:bg-highlight/90 text-white font-semibold py-2 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none"
             >
               {translations.waitlist.form.submit}
             </button>

@@ -13,7 +13,7 @@ export default function AiAgentDemo() {
 
   const handleRunAgent = async (e) => {
     e.preventDefault()
-    if (!prompt.trim()) return
+    if (!prompt.trim() || isLoading) return
     const SIMULATED_API_DELAY_MS = 1500
     setIsLoading(true)
     setResponse('')
@@ -28,17 +28,21 @@ export default function AiAgentDemo() {
 
   // Animated response text effect
   useEffect(() => {
+    let interval;
     if (response && !isLoading) {
       let charIndex = 0
       const TYPING_ANIMATION_DELAY_MS = 20
-      const interval = setInterval(() => {
-        setDisplayedText((prev) => prev + response[charIndex])
+      setDisplayedText('') // Ensure it's empty before starting
+      interval = setInterval(() => {
+        setDisplayedText((prev) => response.slice(0, charIndex + 1))
         charIndex++
         if (charIndex >= response.length) {
           clearInterval(interval)
         }
       }, TYPING_ANIMATION_DELAY_MS)
-      return () => clearInterval(interval)
+    }
+    return () => {
+      if (interval) clearInterval(interval)
     }
   }, [response, isLoading])
 
@@ -87,7 +91,7 @@ export default function AiAgentDemo() {
               <button
                 type="submit"
                 disabled={isLoading || !prompt.trim()}
-                className="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-xl transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg flex items-center justify-center space-x-2"
+                className="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-xl transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg flex items-center justify-center space-x-2 focus:outline-none"
               >
                 {isLoading ? (
                   <>
