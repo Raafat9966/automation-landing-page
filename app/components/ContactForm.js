@@ -146,7 +146,7 @@ export default function ContactForm() {
 
                     <button
                       type="submit"
-                      className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-lg py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-highlight/50"
+                      className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none"
                       aria-label={translations.contact.form.send}
                     >
                       {translations.contact.form.send}

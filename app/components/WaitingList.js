@@ -205,7 +205,7 @@ export default function WaitingList() {
                       <button
                         type="submit"
                         disabled={status === 'loading'}
-                        className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+                        className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-xl py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center focus:outline-none"
                       >
                         {status === 'loading' ? (
                           <>

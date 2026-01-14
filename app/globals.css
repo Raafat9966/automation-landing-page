@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling */
+/* Smooth scrolling and navbar offset */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Accessibility: focus-visible states */
+@layer base {
+  button:focus-visible, 
+  a:focus-visible, 
+  input:focus-visible, 
+  select:focus-visible, 
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-primary;
+  }
 }
 
 /* Custom scrollbar styling */
