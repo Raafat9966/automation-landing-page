@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '../context/LanguageContext'
 import WaitingList from './components/WaitingList'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
           {children}
           <WaitingList />
         </LanguageProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
