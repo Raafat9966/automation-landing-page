@@ -165,5 +165,27 @@ export const en = {
       }
     },
     summary: "At FlowToWork, we combine the reliability of rule-based automation with the intelligence of AI agents to create the most efficient and scalable solutions for your business."
+  },
+  automationFlow: {
+    title: "How Automation Works",
+    subtitle: "From trigger to action — automation made simple.",
+    steps: [
+      {
+        title: "Trigger",
+        text: "A trigger is the event that starts the automation. For example, when a form is submitted or an email arrives."
+      },
+      {
+        title: "Logic",
+        text: "Rules decide what happens next. Conditions help the system understand what action to take."
+      },
+      {
+        title: "Action",
+        text: "The automation performs tasks automatically, like sending emails, updating systems, or creating records."
+      },
+      {
+        title: "Result",
+        text: "The task is completed instantly, saving time and reducing manual work."
+      }
+    ]
   }
 };

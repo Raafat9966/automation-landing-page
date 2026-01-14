@@ -165,5 +165,27 @@ export const de = {
       }
     },
     summary: "Bei FlowToWork kombinieren wir die Zuverlässigkeit regelbasierter Automatisierung mit der Intelligenz von KI-Agenten, um die effizientesten und skalierbarsten Lösungen für Ihr Unternehmen zu schaffen."
+  },
+  automationFlow: {
+    title: "Wie Automatisierung funktioniert",
+    subtitle: "Vom Trigger zur Aktion – Automatisierung einfach erklärt.",
+    steps: [
+      {
+        title: "Trigger",
+        text: "Ein Trigger ist das Ereignis, das die Automatisierung startet. Zum Beispiel, wenn ein Formular abgeschickt wird oder eine E-Mail eingeht."
+      },
+      {
+        title: "Logik",
+        text: "Regeln entscheiden, was als Nächstes passiert. Bedingungen helfen dem System zu verstehen, welche Aktion ausgeführt werden soll."
+      },
+      {
+        title: "Aktion",
+        text: "Die Automatisierung führt Aufgaben automatisch aus, wie das Versenden von E-Mails, das Aktualisieren von Systemen oder das Erstellen von Datensätzen."
+      },
+      {
+        title: "Ergebnis",
+        text: "Die Aufgabe wird sofort erledigt, was Zeit spart und manuelle Arbeit reduziert."
+      }
+    ]
   }
 };

@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import AutomationFlowSection from './components/AutomationFlowSection'
 import WorkflowCards from './components/WorkflowCards'
 import EducationalSection from './components/EducationalSection'
 import AiAgentDemo from './components/AiAgentDemo'
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <WorkflowCards />
+        <AutomationFlowSection />
       <EducationalSection />
       <AiAgentDemo />
       <About />
