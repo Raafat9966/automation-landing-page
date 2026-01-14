@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            className="text-2xl font-bold text-secondary hover:text-primary transition-colors duration-300"
             aria-label="FlowToWork Home"
           >
             FlowToWork
