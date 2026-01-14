@@ -88,7 +88,12 @@ export const en = {
       successTitle: "Thank You!",
       successMessage: "We'll get back to you as soon as possible."
     },
-    direct: "Or reach us directly:"
+    direct: "Or reach us directly:",
+    tabs: {
+      form: "Message Us",
+      info: "Contact Info",
+      social: "Social Media"
+    }
   },
   footer: {
     description: "Empowering businesses with intelligent automation and AI-driven workflows.",

@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      minHeight: {
+        'contact-card': '400px',
+      },
       colors: {
         primary: '#3F9AAE',
         secondary: '#79C9C5',

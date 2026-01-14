@@ -88,7 +88,12 @@ export const de = {
       successTitle: "Vielen Dank!",
       successMessage: "Wir werden uns so schnell wie möglich bei Ihnen melden."
     },
-    direct: "Oder erreichen Sie uns direkt:"
+    direct: "Oder erreichen Sie uns direkt:",
+    tabs: {
+      form: "Nachricht",
+      info: "Kontaktinfo",
+      social: "Social Media"
+    }
   },
   footer: {
     description: "Unternehmen mit intelligenter Automatisierung und KI-gesteuerten Workflows stärken.",
