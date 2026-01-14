@@ -4,7 +4,6 @@ export const de = {
     workflows: "Workflows",
     about: "Über uns",
     aiAgent: "KI-Agent",
-    waitlist: "Warteliste",
     contact: "Kontakt",
     getStarted: "Jetzt starten"
   },

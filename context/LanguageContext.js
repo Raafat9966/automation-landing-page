@@ -10,6 +10,8 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en');
   const [translations, setTranslations] = useState(en);
 
+  const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
+
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language');
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'de')) {
@@ -26,7 +28,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, translations, toggleLanguage }}>
+    <LanguageContext.Provider value={{ language, translations, toggleLanguage, isWaitlistModalOpen, setIsWaitlistModalOpen }}>
       <div className="transition-opacity duration-300" key={language}>
         {children}
       </div>

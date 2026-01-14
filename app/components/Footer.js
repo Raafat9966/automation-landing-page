@@ -3,7 +3,7 @@
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function Footer() {
-  const { translations } = useLanguage()
+  const { translations, setIsWaitlistModalOpen } = useLanguage()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -12,9 +12,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
           <div>
             <h3 className="text-2xl font-bold text-accent mb-4">FlowToWork</h3>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed mb-6">
               {translations.footer.description}
             </p>
+            <button
+              onClick={() => setIsWaitlistModalOpen(true)}
+              className="bg-highlight hover:bg-highlight/90 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+            >
+              {translations.waitlist.form.submit}
+            </button>
           </div>
 
           <div>
@@ -45,15 +51,6 @@ export default function Footer() {
                   aria-label={translations.nav.about}
                 >
                   {translations.nav.about}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#waitlist"
-                  className="text-gray-400 hover:text-accent transition-colors duration-300"
-                  aria-label={translations.nav.waitlist}
-                >
-                  {translations.nav.waitlist}
                 </a>
               </li>
               <li>

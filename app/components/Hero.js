@@ -3,7 +3,7 @@
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function Hero() {
-  const { translations } = useLanguage()
+  const { translations, setIsWaitlistModalOpen } = useLanguage()
   const scrollToContact = () => {
     const element = document.getElementById('contact')
     if (element) {
@@ -33,13 +33,22 @@ export default function Hero() {
           {translations.hero.subtitle}
         </p>
 
-        <button
-          onClick={scrollToContact}
-          className="inline-block bg-highlight hover:bg-highlight/90 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-highlight/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-highlight/50"
-          aria-label={translations.hero.cta}
-        >
-          {translations.hero.cta}
-        </button>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+          <button
+            onClick={scrollToContact}
+            className="w-full sm:w-auto bg-highlight hover:bg-highlight/90 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-highlight/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-highlight/50"
+            aria-label={translations.hero.cta}
+          >
+            {translations.hero.cta}
+          </button>
+          <button
+            onClick={() => setIsWaitlistModalOpen(true)}
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 font-bold text-lg px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 backdrop-blur-sm"
+            aria-label={translations.waitlist.form.submit}
+          >
+            {translations.waitlist.form.submit}
+          </button>
+        </div>
 
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-white/80">
           <div className="flex items-center gap-2">
