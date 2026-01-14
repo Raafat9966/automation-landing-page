@@ -95,5 +95,44 @@ export const en = {
     quickLinks: "Quick Links",
     connect: "Connect With Us",
     rights: "All rights reserved. | Built with Next.js & Tailwind CSS"
+  },
+  education: {
+    title: "Automation vs AI Agents — What’s the Difference?",
+    introduction: "Understanding the distinction between traditional automation and AI agents is key to choosing the right solution for your business. While both aim to increase efficiency, they operate in fundamentally different ways.",
+    automation: {
+      title: "Automation",
+      subtitle: "Rule-based efficiency",
+      features: [
+        "Rule-based workflows",
+        "Trigger → Action logic",
+        "Best for repetitive, predictable tasks"
+      ],
+      examples: {
+        title: "Examples:",
+        items: [
+          "Email automation",
+          "CRM updates",
+          "Data synchronization"
+        ]
+      }
+    },
+    aiAgents: {
+      title: "AI Agents",
+      subtitle: "Context-aware intelligence",
+      features: [
+        "Context-aware decision making",
+        "Use AI models to reason and respond",
+        "Adapt to inputs and goals"
+      ],
+      examples: {
+        title: "Examples:",
+        items: [
+          "AI chat assistants",
+          "Autonomous workflow orchestration",
+          "Intelligent decision support"
+        ]
+      }
+    },
+    summary: "At FlowToWork, we combine the reliability of rule-based automation with the intelligence of AI agents to create the most efficient and scalable solutions for your business."
   }
 };

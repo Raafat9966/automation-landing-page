@@ -6,11 +6,11 @@ export default function About() {
   const { translations } = useLanguage()
 
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white" aria-labelledby="about-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <article>
+            <h2 id="about-title" className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
               {translations.about.title} <span className="text-primary">FlowToWork</span>
             </h2>
 
@@ -40,7 +40,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
           <div className="relative">
             <div className="relative z-10 bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl p-12 shadow-2xl">

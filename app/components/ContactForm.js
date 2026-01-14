@@ -31,10 +31,10 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="contact-title">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 id="contact-title" className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
             {translations.contact.title}
           </h2>
           <p className="text-xl text-gray-600">
@@ -120,27 +120,27 @@ export default function ContactForm() {
         <div className="mt-12 text-center">
           <p className="text-gray-600 mb-4">{translations.contact.direct}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 text-gray-700">
-            <a
-              href="mailto:hello@flowtowork.com"
-              className="inline-flex items-center gap-2 hover:text-primary transition-colors duration-300"
-              aria-label="Email us"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              hello@flowtowork.com
-            </a>
-            <span className="hidden sm:inline text-gray-400">|</span>
-            <a
-              href="tel:+1234567890"
-              className="inline-flex items-center gap-2 hover:text-primary transition-colors duration-300"
-              aria-label="Call us"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              +1 (234) 567-890
-            </a>
+              <a
+                href="mailto:hello@flowtowork.com"
+                className="inline-flex items-center gap-2 hover:text-primary transition-colors duration-300"
+                aria-label="Email us at hello@flowtowork.com"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                hello@flowtowork.com
+              </a>
+              <span className="hidden sm:inline text-gray-400" aria-hidden="true">|</span>
+              <a
+                href="tel:+1234567890"
+                className="inline-flex items-center gap-2 hover:text-primary transition-colors duration-300"
+                aria-label="Call us at +1 (234) 567-890"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +1 (234) 567-890
+              </a>
           </div>
         </div>
       </div>

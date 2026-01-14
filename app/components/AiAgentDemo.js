@@ -14,7 +14,7 @@ export default function AiAgentDemo() {
   const handleRunAgent = async (e) => {
     e.preventDefault()
     if (!prompt.trim()) return
-const SIMULATED_API_DELAY_MS = 1500
+    const SIMULATED_API_DELAY_MS = 1500
     setIsLoading(true)
     setResponse('')
     setDisplayedText('')
@@ -25,11 +25,12 @@ const SIMULATED_API_DELAY_MS = 1500
       setIsLoading(false)
     }, SIMULATED_API_DELAY_MS)
   }
-const TYPING_ANIMATION_DELAY_MS = 20
+
   // Animated response text effect
   useEffect(() => {
     if (response && !isLoading) {
       let charIndex = 0
+      const TYPING_ANIMATION_DELAY_MS = 20
       const interval = setInterval(() => {
         setDisplayedText((prev) => prev + response[charIndex])
         charIndex++
@@ -42,10 +43,11 @@ const TYPING_ANIMATION_DELAY_MS = 20
   }, [response, isLoading])
 
   return (
-    <section id="ai-demo" className="py-24 bg-white overflow-hidden">
+    <section id="ai-demo" className="py-24 bg-white overflow-hidden" aria-labelledby="ai-demo-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h2 
+            id="ai-demo-title"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

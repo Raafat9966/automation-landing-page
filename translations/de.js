@@ -95,5 +95,44 @@ export const de = {
     quickLinks: "Schnellzugriff",
     connect: "Verbinden Sie sich mit uns",
     rights: "Alle Rechte vorbehalten. | Erstellt mit Next.js & Tailwind CSS"
+  },
+  education: {
+    title: "Automatisierung vs. KI-Agenten – Was ist der Unterschied?",
+    introduction: "Das Verständnis des Unterschieds zwischen herkömmlicher Automatisierung und KI-Agenten ist entscheidend für die Wahl der richtigen Lösung für Ihr Unternehmen. Obwohl beide darauf abzielen, die Effizienz zu steigern, arbeiten sie auf grundlegend unterschiedliche Weise.",
+    automation: {
+      title: "Automatisierung",
+      subtitle: "Regelbasierte Effizienz",
+      features: [
+        "Regelbasierte Workflows",
+        "Trigger-Aktions-Logik",
+        "Bestens geeignet für repetitive, vorhersehbare Aufgaben"
+      ],
+      examples: {
+        title: "Beispiele:",
+        items: [
+          "E-Mail-Automatisierung",
+          "CRM-Aktualisierungen",
+          "Datensynchronisation"
+        ]
+      }
+    },
+    aiAgents: {
+      title: "KI-Agenten",
+      subtitle: "Kontextbewusste Intelligenz",
+      features: [
+        "Kontextbewusste Entscheidungsfindung",
+        "Nutzung von KI-Modellen für logisches Denken und Antworten",
+        "Anpassung an Eingaben und Ziele"
+      ],
+      examples: {
+        title: "Beispiele:",
+        items: [
+          "KI-Chat-Assistenten",
+          "Autonome Workflow-Orchestrierung",
+          "Intelligente Entscheidungsunterstützung"
+        ]
+      }
+    },
+    summary: "Bei FlowToWork kombinieren wir die Zuverlässigkeit regelbasierter Automatisierung mit der Intelligenz von KI-Agenten, um die effizientesten und skalierbarsten Lösungen für Ihr Unternehmen zu schaffen."
   }
 };
