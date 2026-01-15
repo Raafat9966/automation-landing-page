@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
+import WorkflowDemoSection from './WorkflowDemoSection'
 
 export default function WorkflowCards() {
   const { translations } = useLanguage()
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
 
   const icons = [
     (
@@ -42,35 +45,45 @@ export default function WorkflowCards() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {translations.workflows.items.map((workflow, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 group"
-            >
-              <div className="mb-6 text-primary group-hover:text-secondary transition-colors duration-300">
-                {icons[index]}
+          {translations.workflows.items.map((workflow, index) => {
+            const isMarketingAutomation = workflow.title === translations.workflows.items[3].title;
+            
+            return (
+              <div
+                key={index}
+                onClick={() => isMarketingAutomation && setIsDemoModalOpen(true)}
+                className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 group ${isMarketingAutomation ? 'cursor-pointer' : ''}`}
+              >
+                <div className="mb-6 text-primary group-hover:text-secondary transition-colors duration-300">
+                  {icons[index]}
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  {workflow.title}
+                </h3>
+
+                <p className="text-gray-600 leading-relaxed">
+                  {workflow.description}
+                </p>
+
+                <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-highlight font-semibold inline-flex items-center">
+                    {translations.workflows.learnMore}
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
               </div>
-
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {workflow.title}
-              </h3>
-
-              <p className="text-gray-600 leading-relaxed">
-                {workflow.description}
-              </p>
-
-              <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-highlight font-semibold inline-flex items-center">
-                  {translations.workflows.learnMore}
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
+      <WorkflowDemoSection 
+        isOpen={isDemoModalOpen} 
+        onClose={() => setIsDemoModalOpen(false)} 
+      />
     </section>
   )
 }
