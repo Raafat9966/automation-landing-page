@@ -188,6 +188,75 @@ export const en = {
       }
     ]
   },
+  emailAutomationDemo: {
+    title: "AI Email Automation",
+    subtitle: "Your inbox, managed by AI — automatically.",
+    intro: "Stop spending hours sorting through emails. This automation uses AI to understand, categorize, and respond to your messages, so you only focus on what truly matters.",
+    steps: [
+      {
+        title: "Step 1 – Inbox Monitoring",
+        description: "The AI monitors your incoming emails in real-time as they arrive."
+      },
+      {
+        title: "Step 2 – Intelligent Sorting",
+        description: "AI reads and categorizes emails based on urgency and topic."
+      },
+      {
+        title: "Step 3 – Draft Generation",
+        description: "Smart drafts are created for common inquiries, ready for your approval."
+      },
+      {
+        title: "Step 4 – Action Taken",
+        description: "Emails are archived, forwarded, or replied to automatically based on your rules."
+      }
+    ]
+  },
+  crmAutomationDemo: {
+    title: "CRM Workflow Automation",
+    subtitle: "Keep your sales pipeline moving — automatically.",
+    intro: "Never lose a lead again. This workflow automates the tedious data entry and follow-up tasks in your CRM, ensuring your sales team stays focused on closing deals.",
+    steps: [
+      {
+        title: "Step 1 – Lead Capture",
+        description: "New leads are automatically pulled from forms or ads into your CRM."
+      },
+      {
+        title: "Step 2 – Data Enrichment",
+        description: "AI adds missing company info and social profiles to the lead record."
+      },
+      {
+        title: "Step 3 – Smart Assignment",
+        description: "Leads are assigned to the right team member based on location or expertise."
+      },
+      {
+        title: "Step 4 – Auto Follow-up",
+        description: "Personalized follow-up sequences are triggered to keep the lead engaged."
+      }
+    ]
+  },
+  chatAgentDemo: {
+    title: "AI Chat Agents",
+    subtitle: "24/7 customer support — automatically.",
+    intro: "Provide instant answers to your customers at any time. Our AI Chat Agents handle inquiries, qualify leads, and even book meetings while you sleep.",
+    steps: [
+      {
+        title: "Step 1 – Instant Greeting",
+        description: "The AI agent greets visitors immediately when they start a chat."
+      },
+      {
+        title: "Step 2 – Needs Discovery",
+        description: "AI asks smart questions to understand exactly what the customer needs."
+      },
+      {
+        title: "Step 3 – Real-time Support",
+        description: "Instant answers are provided using your company's knowledge base."
+      },
+      {
+        title: "Step 4 – Seamless Handoff",
+        description: "Complex issues or hot leads are instantly passed to your human team."
+      }
+    ]
+  },
   workflowDemo: {
     title: "Automated Ad Performance Monitoring",
     subtitle: "How FlowToWork keeps an eye on your ads — automatically.",

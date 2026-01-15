@@ -188,6 +188,75 @@ export const de = {
       }
     ]
   },
+  emailAutomationDemo: {
+    title: "KI-E-Mail-Automatisierung",
+    subtitle: "Ihr Posteingang, von KI verwaltet – ganz automatisch.",
+    intro: "Verschwenden Sie keine Stunden mehr mit dem Sortieren von E-Mails. Diese Automatisierung nutzt KI, um Ihre Nachrichten zu verstehen, zu kategorisieren und zu beantworten, damit Sie sich auf das Wesentliche konzentrieren können.",
+    steps: [
+      {
+        title: "Schritt 1 – Posteingangs-Überwachung",
+        description: "Die KI überwacht Ihren Posteingang in Echtzeit, sobald E-Mails eingehen."
+      },
+      {
+        title: "Schritt 2 – Intelligente Sortierung",
+        description: "Die KI liest und kategorisiert E-Mails nach Dringlichkeit und Thema."
+      },
+      {
+        title: "Schritt 3 – Entwurfserstellung",
+        description: "Für häufige Anfragen werden intelligente Entwürfe erstellt, die für Ihre Freigabe bereitstehen."
+      },
+      {
+        title: "Schritt 4 – Automatische Erledigung",
+        description: "E-Mails werden basierend auf Ihren Regeln automatisch archiviert, weitergeleitet oder beantworten."
+      }
+    ]
+  },
+  crmAutomationDemo: {
+    title: "CRM-Workflow-Automatisierung",
+    subtitle: "Halten Sie Ihre Vertriebspipeline in Bewegung – ganz automatisch.",
+    intro: "Verlieren Sie nie wieder einen Lead. Dieser Workflow automatisiert die mühsame Dateneingabe und Follow-up-Aufgaben in Ihrem CRM, damit Ihr Vertriebsteam sich auf den Abschluss konzentrieren kann.",
+    steps: [
+      {
+        title: "Schritt 1 – Lead-Erfassung",
+        description: "Neue Leads werden automatisch aus Formularen oder Anzeigen in Ihr CRM übertragen."
+      },
+      {
+        title: "Schritt 2 – Datenanreicherung",
+        description: "KI fügt fehlende Unternehmensinfos und Social-Media-Profile zum Lead-Datensatz hinzu."
+      },
+      {
+        title: "Schritt 3 – Intelligente Zuweisung",
+        description: "Leads werden basierend auf Standort oder Fachwissen dem richtigen Teammitglied zugewiesen."
+      },
+      {
+        title: "Schritt 4 – Automatisches Follow-up",
+        description: "Personalisierte Follow-up-Sequenzen werden ausgelöst, um den Lead bei der Stange zu halten."
+      }
+    ]
+  },
+  chatAgentDemo: {
+    title: "KI-Chat-Agenten",
+    subtitle: "24/7 Kundensupport – ganz automatisch.",
+    intro: "Bieten Sie Ihren Kunden zu jeder Zeit sofortige Antworten. Unsere KI-Chat-Agenten bearbeiten Anfragen, qualifizieren Leads und buchen sogar Termine, während Sie schlafen.",
+    steps: [
+      {
+        title: "Schritt 1 – Sofortige Begrüßung",
+        description: "Der KI-Agent begrüßt Besucher sofort, wenn sie einen Chat starten."
+      },
+      {
+        title: "Schritt 2 – Bedarfsanalyse",
+        description: "Die KI stellt intelligente Fragen, um genau zu verstehen, was der Kunde benötigt."
+      },
+      {
+        title: "Schritt 3 – Echtzeit-Support",
+        description: "Sofortige Antworten werden basierend auf der Wissensdatenbank Ihres Unternehmens geliefert."
+      },
+      {
+        title: "Schritt 4 – Nahtlose Übergabe",
+        description: "Komplexe Probleme oder heiße Leads werden sofort an Ihr menschliches Team übergeben."
+      }
+    ]
+  },
   workflowDemo: {
     title: "Automatisierte Anzeigenüberwachung",
     subtitle: "Wie FlowToWork Ihre Anzeigen im Auge behält – ganz automatisch.",

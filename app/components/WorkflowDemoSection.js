@@ -5,11 +5,13 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
-export default function WorkflowDemoSection({ isOpen, onClose }) {
-  const { translations } = useLanguage()
-  const { workflowDemo } = translations
-
+export default function WorkflowDemoSection({ isOpen, onClose, workflowData, imageSrc, fallbackSvg }) {
   const [imageError, setImageError] = useState(false)
+
+  // Reset image error when workflow changes
+  useEffect(() => {
+    setImageError(false)
+  }, [imageSrc])
 
   // Prevent scrolling when modal is open
   useEffect(() => {
@@ -22,6 +24,8 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
       document.body.style.overflow = 'unset'
     }
   }, [isOpen])
+
+  if (!workflowData) return null;
 
   const stepIcons = [
     // Step 1: Daily Check (Calendar/Clock)
@@ -138,7 +142,7 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 pr-8"
                 >
-                  {workflowDemo.title}
+                  {workflowData.title}
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -146,7 +150,7 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                   transition={{ delay: 0.1 }}
                   className="text-base sm:text-lg text-primary font-medium mb-4"
                 >
-                  {workflowDemo.subtitle}
+                  {workflowData.subtitle}
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -154,7 +158,7 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                   transition={{ delay: 0.2 }}
                   className="text-gray-600 max-w-2xl mx-auto leading-relaxed text-sm"
                 >
-                  {workflowDemo.intro}
+                  {workflowData.intro}
                 </motion.p>
               </div>
 
@@ -173,10 +177,10 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                   />
                   
                   <div className="relative aspect-[21/9] w-full bg-white rounded-lg shadow-inner flex items-center justify-center overflow-hidden p-2 sm:p-3">
-                    {!imageError ? (
+                    {!imageError && imageSrc ? (
                       <Image
-                        src="/images/ad-automation-workflow.png"
-                        alt="Automated Ad Performance Monitoring Workflow Diagram"
+                        src={imageSrc}
+                        alt={`${workflowData.title} Workflow Diagram`}
                         fill
                         className="object-contain p-4"
                         sizes="(max-w-1024px) 100vw, 1024px"
@@ -185,30 +189,32 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                       />
                     ) : (
                       <div className="relative w-full h-full flex items-center justify-center">
-                        <svg viewBox="0 0 800 400" className="w-full h-full text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect x="50" y="150" width="120" height="100" rx="12" className="fill-gray-50 stroke-gray-200" strokeWidth="2" />
-                          <path d="M85 185h50M85 200h30M85 215h40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
-                          <text x="110" y="275" textAnchor="middle" className="fill-gray-500 text-[12px] font-medium uppercase tracking-wider">Platforms</text>
+                        {fallbackSvg || (
+                          <svg viewBox="0 0 800 400" className="w-full h-full text-primary" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="150" width="120" height="100" rx="12" className="fill-gray-50 stroke-gray-200" strokeWidth="2" />
+                            <path d="M85 185h50M85 200h30M85 215h40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+                            <text x="110" y="275" textAnchor="middle" className="fill-gray-500 text-[12px] font-medium uppercase tracking-wider">Input</text>
 
-                          <path d="M190 200h60" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 8" />
-                          <path d="M250 200l-10-5m10 5l-10 5" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M190 200h60" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 8" />
+                            <path d="M250 200l-10-5m10 5l-10 5" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
 
-                          <rect x="270" y="125" width="260" height="150" rx="20" className="fill-primary/5 stroke-primary/20" strokeWidth="2" />
-                          <circle cx="400" y="200" r="40" className="fill-white stroke-primary shadow-sm" strokeWidth="2" />
-                          <path d="M385 200l10 10 20-20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                          <text x="400" y="300" textAnchor="middle" className="fill-primary font-bold text-[14px]">FlowToWork Automation</text>
+                            <rect x="270" y="125" width="260" height="150" rx="20" className="fill-primary/5 stroke-primary/20" strokeWidth="2" />
+                            <circle cx="400" y="200" r="40" className="fill-white stroke-primary shadow-sm" strokeWidth="2" />
+                            <path d="M385 200l10 10 20-20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                            <text x="400" y="300" textAnchor="middle" className="fill-primary font-bold text-[14px]">FlowToWork AI</text>
 
-                          <path d="M550 200h60" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 8" />
-                          <path d="M610 200l-10-5m10 5l-10 5" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M550 200h60" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 8" />
+                            <path d="M610 200l-10-5m10 5l-10 5" stroke="#79C9C5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
 
-                          <rect x="630" y="150" width="120" height="100" rx="12" className="fill-highlight/5 stroke-highlight/20" strokeWidth="2" />
-                          <path d="M690 180v30M690 220h.01" stroke="#F96E5B" strokeWidth="3" strokeLinecap="round" />
-                          <text x="690" y="275" textAnchor="middle" className="fill-highlight text-[12px] font-medium uppercase tracking-wider">Alerts & History</text>
-                          
-                          <circle cx="110" cy="120" r="4" className="fill-secondary/40" />
-                          <circle cx="400" cy="80" r="6" className="fill-primary/20" />
-                          <circle cx="690" cy="120" r="4" className="fill-highlight/40" />
-                        </svg>
+                            <rect x="630" y="150" width="120" height="100" rx="12" className="fill-highlight/5 stroke-highlight/20" strokeWidth="2" />
+                            <path d="M680 185h20M680 200h20M680 215h20" stroke="#F96E5B" strokeWidth="3" strokeLinecap="round" />
+                            <text x="690" y="275" textAnchor="middle" className="fill-highlight text-[12px] font-medium uppercase tracking-wider">Result</text>
+                            
+                            <circle cx="110" cy="120" r="4" className="fill-secondary/40" />
+                            <circle cx="400" cy="80" r="6" className="fill-primary/20" />
+                            <circle cx="690" cy="120" r="4" className="fill-highlight/40" />
+                          </svg>
+                        )}
                       </div>
                     )}
                   </div>
@@ -222,7 +228,7 @@ export default function WorkflowDemoSection({ isOpen, onClose }) {
                 animate="visible"
                 className="grid grid-cols-2 lg:grid-cols-4 gap-4"
               >
-                {workflowDemo.steps.map((step, index) => (
+                {workflowData.steps.map((step, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
