@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import AutomationFlowSection from './components/AutomationFlowSection'
 import WorkflowCards from './components/WorkflowCards'
 import EducationalSection from './components/EducationalSection'
 import AiAgentDemo from './components/AiAgentDemo'
@@ -12,9 +13,10 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
+        <AutomationFlowSection />
+        <EducationalSection />
+        <AiAgentDemo />
       <WorkflowCards />
-      <EducationalSection />
-      <AiAgentDemo />
       <About />
       <ContactForm />
       <Footer />
