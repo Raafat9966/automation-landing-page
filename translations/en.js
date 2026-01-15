@@ -187,5 +187,28 @@ export const en = {
         text: "The task is completed instantly, saving time and reducing manual work."
       }
     ]
+  },
+  workflowDemo: {
+    title: "Automated Ad Performance Monitoring",
+    subtitle: "How FlowToWork keeps an eye on your ads — automatically.",
+    intro: "This automation works quietly in the background to make sure your advertising budget is used wisely. Instead of manually checking results every day, the system does it for you.",
+    steps: [
+      {
+        title: "Step 1 – Daily Check",
+        description: "Every day, the system looks at how your ads performed across your platforms."
+      },
+      {
+        title: "Step 2 – Spotting Problems",
+        description: "If results suddenly drop, the system notices it immediately — before it becomes expensive."
+      },
+      {
+        title: "Step 3 – Instant Alerts",
+        description: "You get notified right away through your preferred channels, so you can take action fast."
+      },
+      {
+        title: "Step 4 – Keeping a Record",
+        description: "All results are saved automatically, giving you a clear history of what happened and when."
+      }
+    ]
   }
 };

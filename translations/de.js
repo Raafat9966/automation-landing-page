@@ -187,5 +187,28 @@ export const de = {
         text: "Die Aufgabe wird sofort erledigt, was Zeit spart und manuelle Arbeit reduziert."
       }
     ]
+  },
+  workflowDemo: {
+    title: "Automatisierte Anzeigenüberwachung",
+    subtitle: "Wie FlowToWork Ihre Anzeigen im Auge behält – ganz automatisch.",
+    intro: "Diese Automatisierung arbeitet leise im Hintergrund, um sicherzustellen, dass Ihr Werbebudget sinnvoll eingesetzt wird. Statt täglich manuell die Ergebnisse zu prüfen, übernimmt das System das für Sie.",
+    steps: [
+      {
+        title: "Schritt 1 – Täglicher Check",
+        description: "Jeden Tag analysiert das System die Leistung Ihrer Anzeigen auf allen Plattformen."
+      },
+      {
+        title: "Schritt 2 – Probleme erkennen",
+        description: "Sollten die Ergebnisse plötzlich einbrechen, bemerkt das System dies sofort – bevor es teuer wird."
+      },
+      {
+        title: "Schritt 3 – Sofortige Benachrichtigung",
+        description: "Sie werden umgehend über Ihre bevorzugten Kanäle informiert, damit Sie schnell reagieren können."
+      },
+      {
+        title: "Schritt 4 – Automatische Protokollierung",
+        description: "Alle Ergebnisse werden automatisch gespeichert, sodass Sie eine klare Historie der Ereignisse haben."
+      }
+    ]
   }
 };
