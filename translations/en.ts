@@ -3,9 +3,11 @@ import type { Translations } from './types'
 export const en: Translations = {
   nav: {
     home: "Home",
+    howItWorks: "How it Works",
+    education: "Education",
+    aiAgent: "AI Agent",
     workflows: "Workflows",
     about: "About",
-    aiAgent: "AI Agent",
     contact: "Contact",
     getStarted: "Get Started"
   },
