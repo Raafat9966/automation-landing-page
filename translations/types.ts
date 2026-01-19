@@ -1,9 +1,11 @@
 export interface Translations {
   nav: {
     home: string
+    howItWorks: string
+    education: string
+    aiAgent: string
     workflows: string
     about: string
-    aiAgent: string
     contact: string
     getStarted: string
   }

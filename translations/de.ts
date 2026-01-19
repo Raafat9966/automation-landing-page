@@ -3,9 +3,11 @@ import type { Translations } from './types'
 export const de: Translations = {
   nav: {
     home: "Startseite",
+    howItWorks: "Funktionsweise",
+    education: "Bildung",
+    aiAgent: "KI-Agent",
     workflows: "Workflows",
     about: "Über uns",
-    aiAgent: "KI-Agent",
     contact: "Kontakt",
     getStarted: "Jetzt starten"
   },

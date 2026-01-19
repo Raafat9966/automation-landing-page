@@ -3,7 +3,7 @@
 import { useState, useEffect, MouseEvent } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
-type SectionId = 'home' | 'workflows' | 'about' | 'ai-demo' | 'contact'
+type SectionId = 'home' | 'how-it-works' | 'education' | 'ai-demo' | 'workflows' | 'about' | 'contact'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
@@ -53,6 +53,20 @@ export default function Navbar() {
               {translations.nav.home}
             </button>
             <button
+              onClick={() => scrollToSection('how-it-works')}
+              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+              aria-label={translations.nav.howItWorks}
+            >
+              {translations.nav.howItWorks}
+            </button>
+            <button
+              onClick={() => scrollToSection('education')}
+              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+              aria-label={translations.nav.education}
+            >
+              {translations.nav.education}
+            </button>
+            <button
               onClick={() => scrollToSection('workflows')}
               className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
               aria-label={translations.nav.workflows}
@@ -60,18 +74,18 @@ export default function Navbar() {
               {translations.nav.workflows}
             </button>
             <button
-              onClick={() => scrollToSection('about')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.about}
-            >
-              {translations.nav.about}
-            </button>
-            <button
               onClick={() => scrollToSection('ai-demo')}
               className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
               aria-label={translations.nav.aiAgent}
             >
               {translations.nav.aiAgent}
+            </button>
+            <button
+              onClick={() => scrollToSection('about')}
+              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+              aria-label={translations.nav.about}
+            >
+              {translations.nav.about}
             </button>
             <button
               onClick={() => scrollToSection('contact')}
@@ -161,22 +175,34 @@ export default function Navbar() {
             {translations.nav.home}
           </button>
           <button
+            onClick={() => scrollToSection('how-it-works')}
+            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+          >
+            {translations.nav.howItWorks}
+          </button>
+          <button
+            onClick={() => scrollToSection('education')}
+            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+          >
+            {translations.nav.education}
+          </button>
+          <button
             onClick={() => scrollToSection('workflows')}
             className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
           >
             {translations.nav.workflows}
           </button>
           <button
-            onClick={() => scrollToSection('about')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.about}
-          </button>
-          <button
             onClick={() => scrollToSection('ai-demo')}
             className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
           >
             {translations.nav.aiAgent}
+          </button>
+          <button
+            onClick={() => scrollToSection('about')}
+            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+          >
+            {translations.nav.about}
           </button>
           <button
             onClick={() => scrollToSection('contact')}
