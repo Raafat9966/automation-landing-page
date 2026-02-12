@@ -9,6 +9,8 @@ export const en: Translations = {
     workflows: "Workflows",
     about: "About",
     contact: "Contact",
+    digitalMarketing: "Digital Marketing",
+    webDevelopment: "Web Development",
     getStarted: "Get Started"
   },
   hero: {
@@ -281,6 +283,72 @@ export const en: Translations = {
       {
         title: "Step 4 – Keeping a Record",
         description: "All results are saved automatically, giving you a clear history of what happened and when."
+      }
+    ]
+  },
+  digitalMarketing: {
+    hero: {
+      title: "Digital Marketing Automation",
+      subtitle: "Elevate your brand with AI-driven marketing strategies that scale your reach and maximize ROI."
+    },
+    sections: [
+      {
+        title: "SEO & Content Strategy",
+        description: "Leverage AI to identify high-impact keywords and generate SEO-optimized content that resonates with your audience.",
+        features: ["Keyword Research", "AI Content Generation", "Performance Tracking"]
+      },
+      {
+        title: "Social Media Management",
+        description: "Automate your social presence across all platforms with intelligent scheduling and engagement tools.",
+        features: ["Auto-Posting", "Engagement Analysis", "Trend Detection"]
+      },
+      {
+        title: "Paid Advertising Optimization",
+        description: "Maximize your ad spend with AI-powered bidding strategies and creative optimization.",
+        features: ["A/B Testing", "Smart Bidding", "Audience Targeting"]
+      },
+      {
+        title: "Email Marketing Campaigns",
+        description: "Deliver personalized experiences at scale with automated email sequences and behavioral triggers.",
+        features: ["Segmentation", "Drip Campaigns", "Analytics"]
+      },
+      {
+        title: "Conversion Rate Optimization",
+        description: "Turn more visitors into customers using AI-driven insights and automated user journey improvements.",
+        features: ["Heatmaps", "Funnel Analysis", "Personalization"]
+      }
+    ]
+  },
+  webDevelopment: {
+    hero: {
+      title: "Web Development Services",
+      subtitle: "Custom, high-performance websites and web applications built with the latest technologies to drive your business forward."
+    },
+    sections: [
+      {
+        title: "Custom Web Applications",
+        description: "Scalable and secure web applications tailored to your specific business needs, from internal tools to customer-facing portals.",
+        features: ["Modern Frameworks", "Responsive Design", "API Integration"]
+      },
+      {
+        title: "E-commerce Solutions",
+        description: "Robust online stores that provide seamless shopping experiences and integrate with your existing inventory and payment systems.",
+        features: ["Secure Checkout", "Inventory Management", "User Accounts"]
+      },
+      {
+        title: "Frontend Development",
+        description: "Engaging and fast-loading user interfaces that provide an exceptional experience across all devices.",
+        features: ["React & Next.js", "Tailwind CSS", "Interactive UI"]
+      },
+      {
+        title: "Backend & Infrastructure",
+        description: "Reliable and efficient server-side logic and database management to ensure your application runs smoothly.",
+        features: ["Database Design", "Serverless Architecture", "Cloud Hosting"]
+      },
+      {
+        title: "Maintenance & Support",
+        description: "Ongoing updates, security patches, and performance optimizations to keep your web presence peak performance.",
+        features: ["24/7 Monitoring", "Security Audits", "Regular Updates"]
       }
     ]
   }

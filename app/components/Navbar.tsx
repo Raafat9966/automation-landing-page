@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect, MouseEvent } from 'react'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage } from '../../context/LanguageContext'
 
 type SectionId = 'home' | 'how-it-works' | 'education' | 'ai-demo' | 'workflows' | 'about' | 'contact'
@@ -9,6 +11,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { language, translations, toggleLanguage } = useLanguage()
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +23,11 @@ export default function Navbar() {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    if (pathname !== '/') {
+      router.push(`/#${sectionId}`)
+      setIsOpen(false)
+      return
+    }
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -94,6 +103,26 @@ export default function Navbar() {
             >
               {translations.nav.contact}
             </button>
+
+            <Link
+              href="/digital-marketing"
+              className={`transition-colors duration-300 font-medium ${
+                pathname === '/digital-marketing' ? 'text-primary' : 'text-gray-700 hover:text-primary'
+              }`}
+              onClick={() => setIsOpen(false)}
+            >
+              {translations.nav.digitalMarketing}
+            </Link>
+
+            <Link
+              href="/web-development"
+              className={`transition-colors duration-300 font-medium ${
+                pathname === '/web-development' ? 'text-primary' : 'text-gray-700 hover:text-primary'
+              }`}
+              onClick={() => setIsOpen(false)}
+            >
+              {translations.nav.webDevelopment}
+            </Link>
 
             <button
               onClick={toggleLanguage}
@@ -210,6 +239,28 @@ export default function Navbar() {
           >
             {translations.nav.contact}
           </button>
+          <Link
+            href="/digital-marketing"
+            className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
+              pathname === '/digital-marketing' 
+                ? 'text-primary bg-gray-50' 
+                : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+            }`}
+            onClick={() => setIsOpen(false)}
+          >
+            {translations.nav.digitalMarketing}
+          </Link>
+          <Link
+            href="/web-development"
+            className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
+              pathname === '/web-development' 
+                ? 'text-primary bg-gray-50' 
+                : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+            }`}
+            onClick={() => setIsOpen(false)}
+          >
+            {translations.nav.webDevelopment}
+          </Link>
         </div>
       </div>
     </nav>

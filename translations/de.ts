@@ -9,6 +9,8 @@ export const de: Translations = {
     workflows: "Workflows",
     about: "Über uns",
     contact: "Kontakt",
+    digitalMarketing: "Digital Marketing",
+    webDevelopment: "Webentwicklung",
     getStarted: "Jetzt starten"
   },
   hero: {
@@ -281,6 +283,72 @@ export const de: Translations = {
       {
         title: "Schritt 4 – Automatische Protokollierung",
         description: "Alle Ergebnisse werden automatisch gespeichert, sodass Sie eine klare Historie der Ereignisse haben."
+      }
+    ]
+  },
+  digitalMarketing: {
+    hero: {
+      title: "Digitales Marketing-Automatisierung",
+      subtitle: "Steigern Sie Ihre Marke mit KI-gesteuerten Marketingstrategien, die Ihre Reichweite skalieren und den ROI maximieren."
+    },
+    sections: [
+      {
+        title: "SEO & Content-Strategie",
+        description: "Nutzen Sie KI, um wirkungsvolle Keywords zu identifizieren und SEO-optimierte Inhalte zu erstellen, die Ihre Zielgruppe ansprechen.",
+        features: ["Keyword-Recherche", "KI-Inhaltserstellung", "Leistungsverfolgung"]
+      },
+      {
+        title: "Social Media Management",
+        description: "Automatisieren Sie Ihre soziale Präsenz auf allen Plattformen mit intelligenten Planungs- und Engagement-Tools.",
+        features: ["Auto-Posting", "Engagement-Analyse", "Trend-Erkennung"]
+      },
+      {
+        title: "Optimierung bezahlter Werbung",
+        description: "Maximieren Sie Ihre Werbeausgaben mit KI-gestützten Gebotsstrategien und kreativer Optimierung.",
+        features: ["A/B-Tests", "Smart Bidding", "Zielgruppen-Targeting"]
+      },
+      {
+        title: "E-Mail-Marketing-Kampagnen",
+        description: "Bieten Sie personalisierte Erlebnisse in großem Maßstab mit automatisierten E-Mail-Sequenzen und Verhaltens-Triggern.",
+        features: ["Segmentierung", "Drip-Kampagnen", "Analysen"]
+      },
+      {
+        title: "Conversion-Rate-Optimierung",
+        description: "Verwandeln Sie mehr Besucher in Kunden mit KI-gestützten Erkenntnissen und automatisierten Verbesserungen der User Journey.",
+        features: ["Heatmaps", "Funnel-Analyse", "Personalisierung"]
+      }
+    ]
+  },
+  webDevelopment: {
+    hero: {
+      title: "Webentwicklungs-Services",
+      subtitle: "Maßgeschneiderte, leistungsstarke Websites und Webanwendungen, die mit den neuesten Technologien entwickelt wurden, um Ihr Geschäft voranzutreiben."
+    },
+    sections: [
+      {
+        title: "Individuelle Webanwendungen",
+        description: "Skalierbare und sichere Webanwendungen, die auf Ihre spezifischen Geschäftsanforderungen zugeschnitten sind, von internen Tools bis hin zu Portalen für Kunden.",
+        features: ["Moderne Frameworks", "Responsive Design", "API-Integration"]
+      },
+      {
+        title: "E-Commerce-Lösungen",
+        description: "Robuste Online-Shops, die nahtlose Einkaufserlebnisse bieten und sich in Ihre bestehenden Inventar- und Zahlungssysteme integrieren lassen.",
+        features: ["Sicherer Checkout", "Lagerverwaltung", "Benutzerkonten"]
+      },
+      {
+        title: "Frontend-Entwicklung",
+        description: "Ansprechende und schnell ladende Benutzeroberflächen, die auf allen Geräten ein außergewöhnliches Erlebnis bieten.",
+        features: ["React & Next.js", "Tailwind CSS", "Interaktive UI"]
+      },
+      {
+        title: "Backend & Infrastruktur",
+        description: "Zuverlässige und effiziente serverseitige Logik und Datenbankverwaltung, um sicherzustellen, dass Ihre Anwendung reibungslos läuft.",
+        features: ["Datenbankdesign", "Serverless Architecture", "Cloud Hosting"]
+      },
+      {
+        title: "Wartung & Support",
+        description: "Laufende Updates, Sicherheitspatches und Leistungsoptimierungen, um Ihre Webpräsenz auf Höchstleistung zu halten.",
+        features: ["24/7 Überwachung", "Sicherheits-Audits", "Regelmäßige Updates"]
       }
     ]
   }

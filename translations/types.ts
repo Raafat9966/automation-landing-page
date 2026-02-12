@@ -7,6 +7,8 @@ export interface Translations {
     workflows: string
     about: string
     contact: string
+    digitalMarketing: string
+    webDevelopment: string
     getStarted: string
   }
   hero: {
@@ -170,6 +172,28 @@ export interface Translations {
     steps: Array<{
       title: string
       description: string
+    }>
+  }
+  digitalMarketing: {
+    hero: {
+      title: string
+      subtitle: string
+    }
+    sections: Array<{
+      title: string
+      description: string
+      features: string[]
+    }>
+  }
+  webDevelopment: {
+    hero: {
+      title: string
+      subtitle: string
+    }
+    sections: Array<{
+      title: string
+      description: string
+      features: string[]
     }>
   }
 }
