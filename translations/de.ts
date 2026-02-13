@@ -5,10 +5,10 @@ export const de: Translations = {
     home: "Startseite",
     howItWorks: "Funktionsweise",
     education: "Bildung",
-    aiAgent: "KI-Agent",
     workflows: "Workflows",
     about: "Über uns",
     contact: "Kontakt",
+    automation: "Automatisierung",
     digitalMarketing: "Digital Marketing",
     webDevelopment: "Webentwicklung",
     getStarted: "Jetzt starten"
@@ -46,15 +46,6 @@ export const de: Translations = {
       }
     ],
     learnMore: "Mehr erfahren"
-  },
-  aiDemo: {
-    title: "KI-Agenten in Aktion",
-    subtitle: "Erleben Sie, wie unsere KI-Agenten Ihre Befehle in automatisierte Aktionen umwandeln. Probieren Sie es unten aus!",
-    inputPlaceholder: "Bitten Sie den Agenten, etwas zu tun (z.B. 'Meinen Tagesablauf organisieren')",
-    buttonLabel: "Agent ausführen",
-    responseTitle: "Agenten-Antwort",
-    processingLabel: "Verarbeitung...",
-    mockResponse: "Ich habe Ihre Anfrage analysiert. Basierend auf Ihrer Eingabe kann ich diesen Workflow automatisieren, indem ich Ihren Kalender verbinde, Aufgaben mittels KI priorisiere und automatisierte Erinnerungen einrichte. Ihr Workflow ist nun für maximale Effizienz optimiert."
   },
   about: {
     title: "Über",

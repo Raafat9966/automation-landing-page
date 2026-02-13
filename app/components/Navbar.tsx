@@ -5,11 +5,12 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage } from '../../context/LanguageContext'
 
-type SectionId = 'home' | 'how-it-works' | 'education' | 'ai-demo' | 'workflows' | 'about' | 'contact'
+type SectionId = 'home' | 'how-it-works' | 'education' | 'workflows' | 'about' | 'contact'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isAutomationOpen, setIsAutomationOpen] = useState<boolean>(false)
   const { language, translations, toggleLanguage } = useLanguage()
   const pathname = usePathname()
   const router = useRouter()
@@ -61,34 +62,54 @@ export default function Navbar() {
             >
               {translations.nav.home}
             </button>
-            <button
-              onClick={() => scrollToSection('how-it-works')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.howItWorks}
+
+            {/* Automation Dropdown */}
+            <div 
+              className="relative group"
+              onMouseEnter={() => setIsAutomationOpen(true)}
+              onMouseLeave={() => setIsAutomationOpen(false)}
             >
-              {translations.nav.howItWorks}
-            </button>
-            <button
-              onClick={() => scrollToSection('education')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.education}
-            >
-              {translations.nav.education}
-            </button>
-            <button
-              onClick={() => scrollToSection('workflows')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.workflows}
-            >
-              {translations.nav.workflows}
-            </button>
-            <button
-              onClick={() => scrollToSection('ai-demo')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.aiAgent}
-            >
-              {translations.nav.aiAgent}
-            </button>
+              <button
+                className="flex items-center gap-1 text-gray-700 hover:text-primary transition-colors duration-300 font-medium py-2"
+                aria-label={translations.nav.automation}
+              >
+                {translations.nav.automation}
+                <svg 
+                  className={`w-4 h-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div 
+                className={`absolute left-0 mt-0 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 ${
+                  isAutomationOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+              >
+                <button
+                  onClick={() => scrollToSection('how-it-works')}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                >
+                  {translations.nav.howItWorks}
+                </button>
+                <button
+                  onClick={() => scrollToSection('education')}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                >
+                  {translations.nav.education}
+                </button>
+                <button
+                  onClick={() => scrollToSection('workflows')}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                >
+                  {translations.nav.workflows}
+                </button>
+              </div>
+            </div>
+
             <button
               onClick={() => scrollToSection('about')}
               className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
@@ -203,30 +224,46 @@ export default function Navbar() {
           >
             {translations.nav.home}
           </button>
-          <button
-            onClick={() => scrollToSection('how-it-works')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.howItWorks}
-          </button>
-          <button
-            onClick={() => scrollToSection('education')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.education}
-          </button>
-          <button
-            onClick={() => scrollToSection('workflows')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.workflows}
-          </button>
-          <button
-            onClick={() => scrollToSection('ai-demo')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.aiAgent}
-          </button>
+
+          {/* Mobile Automation Submenu */}
+          <div className="space-y-1">
+            <button
+              onClick={() => setIsAutomationOpen(!isAutomationOpen)}
+              className="flex items-center justify-between w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+            >
+              {translations.nav.automation}
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div className={`pl-4 space-y-1 overflow-hidden transition-all duration-300 ${isAutomationOpen ? 'max-h-64' : 'max-h-0'}`}>
+              <button
+                onClick={() => scrollToSection('how-it-works')}
+                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
+              >
+                {translations.nav.howItWorks}
+              </button>
+              <button
+                onClick={() => scrollToSection('education')}
+                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
+              >
+                {translations.nav.education}
+              </button>
+              <button
+                onClick={() => scrollToSection('workflows')}
+                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
+              >
+                {translations.nav.workflows}
+              </button>
+            </div>
+          </div>
+
           <button
             onClick={() => scrollToSection('about')}
             className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"

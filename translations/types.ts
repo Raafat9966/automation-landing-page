@@ -3,10 +3,10 @@ export interface Translations {
     home: string
     howItWorks: string
     education: string
-    aiAgent: string
     workflows: string
     about: string
     contact: string
+    automation: string
     digitalMarketing: string
     webDevelopment: string
     getStarted: string
@@ -30,15 +30,6 @@ export interface Translations {
       description: string
     }>
     learnMore: string
-  }
-  aiDemo: {
-    title: string
-    subtitle: string
-    inputPlaceholder: string
-    buttonLabel: string
-    responseTitle: string
-    processingLabel: string
-    mockResponse: string
   }
   about: {
     title: string
