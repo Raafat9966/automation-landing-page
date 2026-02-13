@@ -5,10 +5,10 @@ export const en: Translations = {
     home: "Home",
     howItWorks: "How it Works",
     education: "Education",
-    aiAgent: "AI Agent",
     workflows: "Workflows",
     about: "About",
     contact: "Contact",
+    automation: "Automation",
     digitalMarketing: "Digital Marketing",
     webDevelopment: "Web Development",
     getStarted: "Get Started"
@@ -46,15 +46,6 @@ export const en: Translations = {
       }
     ],
     learnMore: "Learn more"
-  },
-  aiDemo: {
-    title: "AI Agents in Action",
-    subtitle: "Experience how our AI agents can transform your natural language prompts into automated actions. Try it out below!",
-    inputPlaceholder: "Ask the agent to do something (e.g., 'Organize my daily schedule')",
-    buttonLabel: "Run Agent",
-    responseTitle: "Agent Response",
-    processingLabel: "Processing...",
-    mockResponse: "I've analyzed your request. Based on your prompt, I can automate this workflow by connecting your calendar, prioritizing tasks using AI, and setting up automated reminders. Your workflow is now optimized for maximum efficiency."
   },
   about: {
     title: "About",

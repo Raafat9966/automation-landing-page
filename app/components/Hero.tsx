@@ -1,9 +1,26 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function Hero() {
   const { translations, setIsWaitlistModalOpen } = useLanguage()
+  const [textIndex, setTextIndex] = useState(0)
+
+  const rotatingTexts = [
+    translations.hero.title2,
+    translations.nav.digitalMarketing,
+    translations.nav.webDevelopment
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % rotatingTexts.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [rotatingTexts.length])
+
   const scrollToContact = () => {
     const element = document.getElementById('contact')
     if (element) {
@@ -23,10 +40,22 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <h1 id="hero-title" className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-          {translations.hero.title1}
-          <br />
-          <span className="text-accent">{translations.hero.title2}</span>
+        <h1 id="hero-title" className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight min-h-[1.2em] flex flex-col items-center">
+          <span>{translations.hero.title1}</span>
+          <div className="relative h-[1.2em] w-full flex justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={textIndex}
+                initial={{ y: 40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -40, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="text-accent absolute whitespace-nowrap"
+              >
+                {rotatingTexts[textIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </h1>
 
         <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed sm:leading-loose">
