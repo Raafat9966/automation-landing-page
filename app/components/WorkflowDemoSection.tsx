@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { useState, useEffect, ReactElement } from 'react'
+import { useState, useEffect, useRef, ReactElement } from 'react'
 
 interface WorkflowStep {
   title: string
@@ -26,11 +26,61 @@ interface WorkflowDemoSectionProps {
 
 export default function WorkflowDemoSection({ isOpen, onClose, workflowData, imageSrc, fallbackSvg }: WorkflowDemoSectionProps) {
   const [imageError, setImageError] = useState<boolean>(false)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
 
   // Reset image error when workflow changes
   useEffect(() => {
     setImageError(false)
   }, [imageSrc])
+
+  // Focus management
+  useEffect(() => {
+    if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement
+      const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+        'button:not([disabled]), input, [href], [tabindex]:not([tabindex="-1"])'
+      )
+      firstFocusable?.focus()
+    } else {
+      previousFocusRef.current?.focus()
+    }
+  }, [isOpen])
+
+  // Focus trap and Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen || !modalRef.current) return
+
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+
+      if (e.key === 'Tab') {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input, [href], [tabindex]:not([tabindex="-1"])'
+        )
+        const first = focusableElements[0]
+        const last = focusableElements[focusableElements.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
 
   // Prevent scrolling when modal is open
   useEffect(() => {
@@ -135,6 +185,10 @@ export default function WorkflowDemoSection({ isOpen, onClose, workflowData, ima
 
           {/* Modal Content */}
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="workflow-demo-title"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}

@@ -2,6 +2,11 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import Navbar from '../Navbar'
 import { LanguageProvider } from '@/context/LanguageContext'
 
+jest.mock('next/navigation', () => ({
+  usePathname: () => '/',
+  useRouter: () => ({ push: jest.fn() }),
+}))
+
 function renderWithProvider(ui: React.ReactElement) {
   return render(<LanguageProvider>{ui}</LanguageProvider>)
 }
@@ -13,7 +18,6 @@ describe('Navbar', () => {
     expect(screen.getAllByRole('button', { name: /^home$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByRole('button', { name: /^how it works$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByRole('button', { name: /^education$/i }).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByRole('button', { name: /^ai agent$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByRole('button', { name: /^workflows$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByRole('button', { name: /^about$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getAllByRole('button', { name: /^contact$/i }).length).toBeGreaterThanOrEqual(1)

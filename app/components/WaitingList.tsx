@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
@@ -15,6 +15,55 @@ interface WaitlistFormData {
 
 export default function WaitingList() {
   const { translations, isWaitlistModalOpen, setIsWaitlistModalOpen } = useLanguage()
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (isWaitlistModalOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement
+      const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+        'button, input, select, textarea, [href], [tabindex]:not([tabindex="-1"])'
+      )
+      firstFocusable?.focus()
+    } else {
+      previousFocusRef.current?.focus()
+    }
+  }, [isWaitlistModalOpen])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isWaitlistModalOpen || !modalRef.current) return
+
+      if (e.key === 'Escape') {
+        setIsWaitlistModalOpen(false)
+        return
+      }
+
+      if (e.key === 'Tab') {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+        )
+        const first = focusableElements[0]
+        const last = focusableElements[focusableElements.length - 1]
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isWaitlistModalOpen, setIsWaitlistModalOpen])
+
   const [formData, setFormData] = useState<WaitlistFormData>({
     name: '',
     email: '',
@@ -50,16 +99,17 @@ export default function WaitingList() {
     setStatus('loading')
 
     try {
-      // Simulate API route or Webhook (n8n-ready) submission
-      // In a real scenario, you would use:
-      // await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify(formData) })
-      
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      console.log('Waitlist submission:', formData)
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Submission failed')
+      }
+
       setStatus('success')
-      
-      // Reset form after success (optional, but keep success state visible)
       setFormData({
         name: '',
         email: '',
@@ -84,7 +134,11 @@ export default function WaitingList() {
             className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
           />
           
-          <motion.div 
+          <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="waitlist-modal-title"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -102,7 +156,7 @@ export default function WaitingList() {
 
             <div className="p-8 sm:p-12 max-h-[90vh] overflow-y-auto">
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">{translations.waitlist.title}</h3>
+                <h3 id="waitlist-modal-title" className="text-3xl font-bold text-gray-900 mb-2">{translations.waitlist.title}</h3>
                 <p className="text-gray-600">{translations.waitlist.subtitle}</p>
               </div>
 
@@ -231,15 +285,17 @@ export default function WaitingList() {
                       </p>
                     </div>
 
-                    {status === 'error' && (
-                      <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-red-500 text-center font-medium mt-4"
-                      >
-                        {translations.waitlist.form.error}
-                      </motion.p>
-                    )}
+                    <div aria-live="polite" aria-atomic="true">
+                      {status === 'error' && (
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="text-red-500 text-center font-medium mt-4"
+                        >
+                          {translations.waitlist.form.error}
+                        </motion.p>
+                      )}
+                    </div>
                   </motion.form>
                 )}
               </AnimatePresence>

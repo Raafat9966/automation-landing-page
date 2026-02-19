@@ -72,6 +72,9 @@ export default function Navbar() {
               <button
                 className="flex items-center gap-1 text-gray-700 hover:text-primary transition-colors duration-300 font-medium py-2"
                 aria-label={translations.nav.automation}
+                aria-expanded={isAutomationOpen}
+                aria-haspopup="true"
+                aria-controls="automation-dropdown"
               >
                 {translations.nav.automation}
                 <svg 
@@ -84,24 +87,29 @@ export default function Navbar() {
                 </svg>
               </button>
               
-              <div 
+              <div
+                id="automation-dropdown"
+                role="menu"
                 className={`absolute left-0 mt-0 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 ${
                   isAutomationOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}
               >
                 <button
+                  role="menuitem"
                   onClick={() => scrollToSection('how-it-works')}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
                 >
                   {translations.nav.howItWorks}
                 </button>
                 <button
+                  role="menuitem"
                   onClick={() => scrollToSection('education')}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
                 >
                   {translations.nav.education}
                 </button>
                 <button
+                  role="menuitem"
                   onClick={() => scrollToSection('workflows')}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
                 >
@@ -131,6 +139,7 @@ export default function Navbar() {
                 pathname === '/digital-marketing' ? 'text-primary' : 'text-gray-700 hover:text-primary'
               }`}
               onClick={() => setIsOpen(false)}
+              aria-current={pathname === '/digital-marketing' ? 'page' : undefined}
             >
               {translations.nav.digitalMarketing}
             </Link>
@@ -141,6 +150,7 @@ export default function Navbar() {
                 pathname === '/web-development' ? 'text-primary' : 'text-gray-700 hover:text-primary'
               }`}
               onClick={() => setIsOpen(false)}
+              aria-current={pathname === '/web-development' ? 'page' : undefined}
             >
               {translations.nav.webDevelopment}
             </Link>
@@ -176,6 +186,8 @@ export default function Navbar() {
               className="text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-2"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle Menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? (
                 <svg
@@ -213,6 +225,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white ${
           isOpen ? 'max-h-96 border-b border-gray-100' : 'max-h-0'
         }`}
@@ -230,6 +243,8 @@ export default function Navbar() {
             <button
               onClick={() => setIsAutomationOpen(!isAutomationOpen)}
               className="flex items-center justify-between w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+              aria-expanded={isAutomationOpen}
+              aria-controls="mobile-automation-submenu"
             >
               {translations.nav.automation}
               <svg 
@@ -242,7 +257,7 @@ export default function Navbar() {
               </svg>
             </button>
             
-            <div className={`pl-4 space-y-1 overflow-hidden transition-all duration-300 ${isAutomationOpen ? 'max-h-64' : 'max-h-0'}`}>
+            <div id="mobile-automation-submenu" className={`pl-4 space-y-1 overflow-hidden transition-all duration-300 ${isAutomationOpen ? 'max-h-64' : 'max-h-0'}`}>
               <button
                 onClick={() => scrollToSection('how-it-works')}
                 className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
@@ -279,22 +294,24 @@ export default function Navbar() {
           <Link
             href="/digital-marketing"
             className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
-              pathname === '/digital-marketing' 
-                ? 'text-primary bg-gray-50' 
+              pathname === '/digital-marketing'
+                ? 'text-primary bg-gray-50'
                 : 'text-gray-700 hover:text-primary hover:bg-gray-50'
             }`}
             onClick={() => setIsOpen(false)}
+            aria-current={pathname === '/digital-marketing' ? 'page' : undefined}
           >
             {translations.nav.digitalMarketing}
           </Link>
           <Link
             href="/web-development"
             className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
-              pathname === '/web-development' 
-                ? 'text-primary bg-gray-50' 
+              pathname === '/web-development'
+                ? 'text-primary bg-gray-50'
                 : 'text-gray-700 hover:text-primary hover:bg-gray-50'
             }`}
             onClick={() => setIsOpen(false)}
+            aria-current={pathname === '/web-development' ? 'page' : undefined}
           >
             {translations.nav.webDevelopment}
           </Link>

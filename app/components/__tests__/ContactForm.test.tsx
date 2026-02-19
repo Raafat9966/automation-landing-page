@@ -2,6 +2,14 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import ContactForm from '../ContactForm'
 import { LanguageProvider } from '@/context/LanguageContext'
 
+beforeEach(() => {
+  global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ success: true }) })
+})
+
+afterEach(() => {
+  jest.restoreAllMocks()
+})
+
 function renderWithProvider(ui: React.ReactElement) {
   return render(<LanguageProvider>{ui}</LanguageProvider>)
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
@@ -8,11 +8,11 @@ export default function Hero() {
   const { translations, setIsWaitlistModalOpen } = useLanguage()
   const [textIndex, setTextIndex] = useState(0)
 
-  const rotatingTexts = [
+  const rotatingTexts = useMemo(() => [
     translations.hero.title2,
     translations.nav.digitalMarketing,
     translations.nav.webDevelopment
-  ]
+  ], [translations])
 
   useEffect(() => {
     const timer = setInterval(() => {
