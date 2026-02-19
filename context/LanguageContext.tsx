@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { en } from '../translations/en';
 import { de } from '../translations/de';
 import type { Translations } from '../translations/types';
@@ -22,18 +22,18 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
-  const [translations, setTranslations] = useState<Translations>(en);
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'en';
+    const saved = localStorage.getItem('language');
+    return saved === 'en' || saved === 'de' ? saved : 'en';
+  });
+  const [translations, setTranslations] = useState<Translations>(() => {
+    if (typeof window === 'undefined') return en;
+    const saved = localStorage.getItem('language');
+    return saved === 'de' ? de : en;
+  });
 
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'de')) {
-      setLanguage(savedLanguage);
-      setTranslations(savedLanguage === 'en' ? en : de);
-    }
-  }, []);
 
   const toggleLanguage = () => {
     const newLang: Language = language === 'en' ? 'de' : 'en';

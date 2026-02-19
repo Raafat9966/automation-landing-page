@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent, ChangeEvent, ReactElement } from 'react'
+import { useState, FormEvent, ChangeEvent, ReactElement, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
@@ -23,6 +23,8 @@ interface SocialLink {
   icon: ReactElement
 }
 
+type SubmitStatus = 'idle' | 'loading' | 'success' | 'error'
+
 export default function ContactForm() {
   const { translations } = useLanguage()
   const [activeTab, setActiveTab] = useState<TabId>('form')
@@ -31,7 +33,8 @@ export default function ContactForm() {
     email: '',
     message: '',
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
+  const submitButtonRef = useRef<HTMLButtonElement>(null)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -40,15 +43,34 @@ export default function ContactForm() {
     })
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
+    setSubmitStatus('loading')
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Submission failed')
+      }
+
+      setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
-      setIsSubmitted(false)
-    }, 3000)
+
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 4000)
+    } catch {
+      setSubmitStatus('error')
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        submitButtonRef.current?.focus()
+      }, 4000)
+    }
   }
 
   const tabs: Tab[] = [
@@ -98,17 +120,25 @@ export default function ContactForm() {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.3 }}
               >
-                {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                      <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+                <div aria-live="polite" aria-atomic="true">
+                  {submitStatus === 'success' && (
+                    <div className="text-center py-12">
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{translations.contact.form.successTitle}</h3>
+                      <p className="text-gray-600">{translations.contact.form.successMessage}</p>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{translations.contact.form.successTitle}</h3>
-                    <p className="text-gray-600">{translations.contact.form.successMessage}</p>
-                  </div>
-                ) : (
+                  )}
+                  {submitStatus === 'error' && (
+                    <div className="text-center py-4">
+                      <p className="text-red-600 font-medium">Something went wrong. Please try again.</p>
+                    </div>
+                  )}
+                </div>
+                {(submitStatus === 'idle' || submitStatus === 'loading') && (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
@@ -164,11 +194,21 @@ export default function ContactForm() {
                     </div>
 
                     <button
+                      ref={submitButtonRef}
                       type="submit"
-                      className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none"
+                      disabled={submitStatus === 'loading'}
+                      className="w-full bg-highlight hover:bg-highlight/90 text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center focus:outline-none"
                       aria-label={translations.contact.form.send}
                     >
-                      {translations.contact.form.send}
+                      {submitStatus === 'loading' ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending...
+                        </>
+                      ) : translations.contact.form.send}
                     </button>
                   </form>
                 )}
