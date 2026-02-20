@@ -1,11 +1,9 @@
 'use client'
 
-import { useState, useEffect, MouseEvent } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage } from '../../context/LanguageContext'
-
-type SectionId = 'home' | 'how-it-works' | 'education' | 'workflows' | 'about' | 'contact'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)

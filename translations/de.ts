@@ -82,10 +82,16 @@ export const de: Translations = {
       message: "Nachricht",
       messagePlaceholder: "Erzählen Sie uns von Ihren Automatisierungswünschen...",
       send: "Nachricht senden",
+      sending: "Wird gesendet...",
       successTitle: "Vielen Dank!",
-      successMessage: "Wir werden uns so schnell wie möglich bei Ihnen melden."
+      successMessage: "Wir werden uns so schnell wie möglich bei Ihnen melden.",
+      errorMessage: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
     },
     direct: "Oder erreichen Sie uns direkt:",
+    info: {
+      emailLabel: "E-Mail",
+      phoneLabel: "Telefon"
+    },
     tabs: {
       form: "Nachricht",
       info: "Kontaktinfo",
@@ -96,7 +102,12 @@ export const de: Translations = {
     description: "Unternehmen mit intelligenter Automatisierung und KI-gesteuerten Workflows stärken.",
     quickLinks: "Schnellzugriff",
     connect: "Verbinden Sie sich mit uns",
-    rights: "Alle Rechte vorbehalten. | Erstellt mit Next.js & Tailwind CSS"
+    rights: "Alle Rechte vorbehalten. | Erstellt mit Next.js & Tailwind CSS",
+    socialAriaLabels: {
+      twitter: "Folgen Sie uns auf Twitter",
+      linkedin: "Folgen Sie uns auf LinkedIn",
+      github: "Folgen Sie uns auf GitHub"
+    }
   },
   waitlist: {
     title: "Treten Sie der FlowToWork-Warteliste bei",
