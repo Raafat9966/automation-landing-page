@@ -82,10 +82,16 @@ export const en: Translations = {
       message: "Message",
       messagePlaceholder: "Tell us about your automation needs...",
       send: "Send Message",
+      sending: "Sending...",
       successTitle: "Thank You!",
-      successMessage: "We'll get back to you as soon as possible."
+      successMessage: "We'll get back to you as soon as possible.",
+      errorMessage: "Something went wrong. Please try again."
     },
     direct: "Or reach us directly:",
+    info: {
+      emailLabel: "Email",
+      phoneLabel: "Phone"
+    },
     tabs: {
       form: "Message Us",
       info: "Contact Info",
@@ -96,7 +102,12 @@ export const en: Translations = {
     description: "Empowering businesses with intelligent automation and AI-driven workflows.",
     quickLinks: "Quick Links",
     connect: "Connect With Us",
-    rights: "All rights reserved. | Built with Next.js & Tailwind CSS"
+    rights: "All rights reserved. | Built with Next.js & Tailwind CSS",
+    socialAriaLabels: {
+      twitter: "Follow us on Twitter",
+      linkedin: "Follow us on LinkedIn",
+      github: "Follow us on GitHub"
+    }
   },
   waitlist: {
     title: "Join the FlowToWork Waiting List",

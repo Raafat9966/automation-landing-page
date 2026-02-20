@@ -56,10 +56,16 @@ export interface Translations {
       message: string
       messagePlaceholder: string
       send: string
+      sending: string
       successTitle: string
       successMessage: string
+      errorMessage: string
     }
     direct: string
+    info: {
+      emailLabel: string
+      phoneLabel: string
+    }
     tabs: {
       form: string
       info: string
@@ -71,6 +77,11 @@ export interface Translations {
     quickLinks: string
     connect: string
     rights: string
+    socialAriaLabels: {
+      twitter: string
+      linkedin: string
+      github: string
+    }
   }
   waitlist: {
     title: string
