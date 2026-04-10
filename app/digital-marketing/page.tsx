@@ -14,9 +14,9 @@ export default function DigitalMarketingPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   }
 
   const itemVariants = {
@@ -26,15 +26,15 @@ export default function DigitalMarketingPage() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.4, 0, 0.2, 1] as const
-      }
-    }
+        ease: [0.4, 0, 0.2, 1] as const,
+      },
+    },
   }
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +65,7 @@ export default function DigitalMarketingPage() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: '-100px' }}
             className="space-y-24"
           >
             {digitalMarketing.sections.map((section, index) => (
@@ -78,17 +78,23 @@ export default function DigitalMarketingPage() {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary font-bold text-xl mb-2">
                     {index + 1}
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                    {section.title}
-                  </h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {section.description}
-                  </p>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{section.title}</h2>
+                  <p className="text-lg text-gray-600 leading-relaxed">{section.description}</p>
                   <ul className="space-y-3">
                     {section.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-center text-gray-700">
-                        <svg className="w-5 h-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <svg
+                          className="w-5 h-5 text-primary mr-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                         {feature}
                       </li>
@@ -100,7 +106,7 @@ export default function DigitalMarketingPage() {
                     {/* Placeholder for visual element */}
                     <div className="text-primary/20 group-hover:scale-110 transition-transform duration-500">
                       <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                         <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
                   </div>
