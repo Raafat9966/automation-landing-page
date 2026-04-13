@@ -21,12 +21,19 @@ export async function POST(request: NextRequest) {
     }
 
     const webhookUrl = process.env.CONTACT_WEBHOOK_URL
+    const recipientEmail = 'raafat.basheer@yahoo.com'
 
     if (webhookUrl) {
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message, source: 'contact-form' }),
+        body: JSON.stringify({
+          to: recipientEmail,
+          name,
+          email,
+          message,
+          source: 'contact-form',
+        }),
       })
 
       if (!response.ok) {
