@@ -20,7 +20,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`relative scroll-mt-24 overflow-hidden py-20 sm:py-28 ${
+      className={`relative overflow-hidden py-20 sm:py-28 ${
         tone === 'surface' ? 'bg-surface' : 'bg-bg'
       } ${className}`}
       {...rest}

@@ -54,7 +54,10 @@
   }
 
   html {
-    scroll-padding-top: 6rem;
+    /* Offset hash / scrollIntoView targets by the fixed navbar height so a
+     * section lands snug under it. This is the single source of truth for that
+     * offset — section elements must NOT also set scroll-margin-top. */
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
     scrollbar-color: hsl(var(--primary)) transparent;
   }
