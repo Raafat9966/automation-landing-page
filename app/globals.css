@@ -59,11 +59,13 @@
     scrollbar-color: hsl(var(--primary)) transparent;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
+  /*
+   * NOTE: no global `scroll-behavior: smooth` here. It makes the App Router's
+   * scroll-to-top on navigation animate, which races page-load layout shifts
+   * and leaves route changes (e.g. the Digital Marketing / Web Development nav
+   * links) parked at a random offset. In-page smooth scrolls are requested
+   * explicitly via scrollIntoView({ behavior: 'smooth' }).
+   */
 
   body {
     background-color: hsl(var(--bg));

@@ -4,6 +4,7 @@ import './globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Providers from './components/Providers'
 import ThemeScript from './components/ThemeScript'
+import ScrollToTop from './components/ScrollToTop'
 import WaitingListClient from './components/WaitingListClient'
 import ErrorBoundary from './components/ErrorBoundary'
 import { getLanguage } from './lib/i18n'
@@ -89,6 +90,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           Skip to main content
         </a>
+        <ScrollToTop />
         <Providers initialLanguage={language}>
           <ErrorBoundary>{children}</ErrorBoundary>
           <ErrorBoundary>
