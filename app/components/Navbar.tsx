@@ -64,10 +64,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-4">
           <button
             onClick={() => scrollToSection('home')}
-            className="text-xl font-bold tracking-tight text-fg transition-colors hover:text-primary"
+            className="group text-xl font-bold tracking-tight text-fg transition-colors hover:text-primary"
             aria-label="FlowToWork home"
           >
-            Flow<span className="text-primary">To</span>Work
+            Flow<span className="text-primary transition-colors group-hover:text-white group-active:text-white">To</span>Work
           </button>
 
           <div className="hidden items-center gap-7 lg:flex">
