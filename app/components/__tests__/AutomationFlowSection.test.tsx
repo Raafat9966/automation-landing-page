@@ -1,16 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import AutomationFlowSection from '../AutomationFlowSection'
-import { LanguageProvider } from '@/context/LanguageContext'
+import { en } from '@/translations/en'
 
 describe('AutomationFlowSection', () => {
-  it('renders section title from translations', () => {
-    render(
-      <LanguageProvider>
-        <AutomationFlowSection />
-      </LanguageProvider>
-    )
+  it('renders section title and every step from the provided dictionary', () => {
+    render(<AutomationFlowSection t={en.automationFlow} />)
 
-    const heading = screen.getByRole('heading', { level: 2 })
-    expect(heading).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: en.automationFlow.title })).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(en.automationFlow.steps.length)
   })
 })

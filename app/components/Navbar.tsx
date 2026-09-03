@@ -1,323 +1,258 @@
 'use client'
 
-import { useState, useEffect, MouseEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage } from '../../context/LanguageContext'
-
-type SectionId = 'home' | 'how-it-works' | 'education' | 'workflows' | 'about' | 'contact'
+import ThemeToggle from './ThemeToggle'
+import LanguageToggle from './LanguageToggle'
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isAutomationOpen, setIsAutomationOpen] = useState<boolean>(false)
-  const { language, translations, toggleLanguage } = useLanguage()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isAutomationOpen, setIsAutomationOpen] = useState(false)
+  const { translations, setIsWaitlistModalOpen } = useLanguage()
   const pathname = usePathname()
   const router = useRouter()
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 12)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    setIsOpen(false)
+    setIsAutomationOpen(false)
     if (pathname !== '/') {
       router.push(`/#${sectionId}`)
-      setIsOpen(false)
       return
     }
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsOpen(false)
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const openDropdown = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setIsAutomationOpen(true)
+  }
+  const scheduleClose = () => {
+    closeTimer.current = setTimeout(() => setIsAutomationOpen(false), 120)
+  }
+
+  const solid = isScrolled || isOpen
+
+  const linkClass =
+    'relative font-medium text-fg-muted transition-colors hover:text-fg after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100'
+
+  const automationLinks = [
+    { id: 'how-it-works', label: translations.nav.howItWorks },
+    { id: 'education', label: translations.nav.education },
+    { id: 'workflows', label: translations.nav.workflows },
+  ]
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen
-          ? 'bg-white shadow-md py-4'
-          : 'bg-transparent py-6'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        solid
+          ? 'border-b border-border bg-bg/80 py-3 shadow-soft backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
           <button
             onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold text-secondary hover:text-primary transition-colors duration-300"
-            aria-label="FlowToWork Home"
+            className="text-xl font-bold tracking-tight text-fg transition-colors hover:text-primary"
+            aria-label="FlowToWork home"
           >
-            FlowToWork
+            Flow<span className="text-primary">To</span>Work
           </button>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.home}
-            >
+          <div className="hidden items-center gap-7 lg:flex">
+            <button onClick={() => scrollToSection('home')} className={linkClass}>
               {translations.nav.home}
             </button>
 
-            {/* Automation Dropdown */}
-            <div 
-              className="relative group"
-              onMouseEnter={() => setIsAutomationOpen(true)}
-              onMouseLeave={() => setIsAutomationOpen(false)}
-            >
+            <div className="relative" onMouseEnter={openDropdown} onMouseLeave={scheduleClose}>
               <button
-                className="flex items-center gap-1 text-gray-700 hover:text-primary transition-colors duration-300 font-medium py-2"
-                aria-label={translations.nav.automation}
+                className={`flex items-center gap-1 ${linkClass}`}
                 aria-expanded={isAutomationOpen}
                 aria-haspopup="true"
                 aria-controls="automation-dropdown"
+                onClick={() => setIsAutomationOpen((v) => !v)}
               >
                 {translations.nav.automation}
-                <svg 
-                  className={`w-4 h-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className={`h-4 w-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               <div
                 id="automation-dropdown"
                 role="menu"
-                className={`absolute left-0 mt-0 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 transition-all duration-200 ${
-                  isAutomationOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                className={`absolute left-1/2 mt-3 w-56 -translate-x-1/2 rounded-2xl border border-border bg-card p-2 shadow-lift transition-all duration-200 ${
+                  isAutomationOpen
+                    ? 'visible translate-y-0 opacity-100'
+                    : 'invisible -translate-y-2 opacity-0'
                 }`}
               >
-                <button
-                  role="menuitem"
-                  onClick={() => scrollToSection('how-it-works')}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                >
-                  {translations.nav.howItWorks}
-                </button>
-                <button
-                  role="menuitem"
-                  onClick={() => scrollToSection('education')}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                >
-                  {translations.nav.education}
-                </button>
-                <button
-                  role="menuitem"
-                  onClick={() => scrollToSection('workflows')}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                >
-                  {translations.nav.workflows}
-                </button>
+                {automationLinks.map((item) => (
+                  <button
+                    key={item.id}
+                    role="menuitem"
+                    onClick={() => scrollToSection(item.id)}
+                    className="block w-full rounded-xl px-4 py-2.5 text-left text-sm text-fg-muted transition-colors hover:bg-surface hover:text-primary"
+                  >
+                    {item.label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.about}
-            >
+            <button onClick={() => scrollToSection('about')} className={linkClass}>
               {translations.nav.about}
             </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-              aria-label={translations.nav.contact}
-            >
+            <button onClick={() => scrollToSection('contact')} className={linkClass}>
               {translations.nav.contact}
             </button>
 
             <Link
               href="/digital-marketing"
-              className={`transition-colors duration-300 font-medium ${
-                pathname === '/digital-marketing' ? 'text-primary' : 'text-gray-700 hover:text-primary'
-              }`}
-              onClick={() => setIsOpen(false)}
+              className={`${linkClass} ${pathname === '/digital-marketing' ? 'text-primary' : ''}`}
               aria-current={pathname === '/digital-marketing' ? 'page' : undefined}
             >
               {translations.nav.digitalMarketing}
             </Link>
-
             <Link
               href="/web-development"
-              className={`transition-colors duration-300 font-medium ${
-                pathname === '/web-development' ? 'text-primary' : 'text-gray-700 hover:text-primary'
-              }`}
-              onClick={() => setIsOpen(false)}
+              className={`${linkClass} ${pathname === '/web-development' ? 'text-primary' : ''}`}
               aria-current={pathname === '/web-development' ? 'page' : undefined}
             >
               {translations.nav.webDevelopment}
             </Link>
 
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-1 rounded-full border border-gray-300 hover:border-primary transition-all duration-300 text-sm font-medium"
-              aria-label={`Switch to ${language === 'en' ? 'German' : 'English'}`}
-            >
-              {language === 'en' ? (
-                <>
-                  <span className="text-xl">🇬🇧</span>
-                  <span className="text-gray-700">EN</span>
-                </>
-              ) : (
-                <>
-                  <span className="text-xl">🇩🇪</span>
-                  <span className="text-gray-700">DE</span>
-                </>
-              )}
-            </button>
+            <div className="ml-1 flex items-center gap-2">
+              <LanguageToggle />
+              <ThemeToggle />
+              <button
+                onClick={() => setIsWaitlistModalOpen(true)}
+                className="rounded-xl bg-highlight px-4 py-2 text-sm font-semibold text-highlight-fg shadow-glow transition-transform hover:-translate-y-0.5"
+              >
+                {translations.nav.getStarted}
+              </button>
+            </div>
           </div>
 
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageToggle className="px-2" />
+            <ThemeToggle />
             <button
-              onClick={toggleLanguage}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300"
-              aria-label={`Switch to ${language === 'en' ? 'German' : 'English'}`}
-            >
-              {language === 'en' ? '🇬🇧' : '🇩🇪'}
-            </button>
-            <button
-              className="text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle Menu"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-fg"
+              onClick={() => setIsOpen((v) => !v)}
+              aria-label="Toggle menu"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
             >
-              {isOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 7h16M4 12h16M4 17h16'}
+                />
+              </svg>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white ${
-          isOpen ? 'max-h-96 border-b border-gray-100' : 'max-h-0'
+        className={`overflow-hidden bg-bg/95 backdrop-blur-xl transition-[max-height] duration-300 ease-in-out lg:hidden ${
+          isOpen ? 'max-h-[32rem] border-b border-border' : 'max-h-0'
         }`}
       >
-        <div className="px-4 pt-2 pb-6 space-y-2 shadow-inner">
+        <div className="space-y-1 px-4 pb-6 pt-2">
           <button
             onClick={() => scrollToSection('home')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+            className="block w-full rounded-xl px-4 py-3 text-left font-medium text-fg-muted transition-colors hover:bg-surface hover:text-fg"
           >
             {translations.nav.home}
           </button>
 
-          {/* Mobile Automation Submenu */}
-          <div className="space-y-1">
-            <button
-              onClick={() => setIsAutomationOpen(!isAutomationOpen)}
-              className="flex items-center justify-between w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-              aria-expanded={isAutomationOpen}
-              aria-controls="mobile-automation-submenu"
+          <button
+            onClick={() => setIsAutomationOpen((v) => !v)}
+            className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-medium text-fg-muted transition-colors hover:bg-surface hover:text-fg"
+            aria-expanded={isAutomationOpen}
+            aria-controls="mobile-automation-submenu"
+          >
+            {translations.nav.automation}
+            <svg
+              className={`h-4 w-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-              {translations.nav.automation}
-              <svg 
-                className={`w-4 h-4 transition-transform duration-200 ${isAutomationOpen ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            <div id="mobile-automation-submenu" className={`pl-4 space-y-1 overflow-hidden transition-all duration-300 ${isAutomationOpen ? 'max-h-64' : 'max-h-0'}`}>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="mobile-automation-submenu"
+            className={`overflow-hidden pl-3 transition-[max-height] duration-300 ${
+              isAutomationOpen ? 'max-h-64' : 'max-h-0'
+            }`}
+          >
+            {automationLinks.map((item) => (
               <button
-                onClick={() => scrollToSection('how-it-works')}
-                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full rounded-xl px-4 py-2.5 text-left text-sm text-fg-muted transition-colors hover:bg-surface hover:text-primary"
               >
-                {translations.nav.howItWorks}
+                {item.label}
               </button>
-              <button
-                onClick={() => scrollToSection('education')}
-                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
-              >
-                {translations.nav.education}
-              </button>
-              <button
-                onClick={() => scrollToSection('workflows')}
-                className="block w-full text-left px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-sm"
-              >
-                {translations.nav.workflows}
-              </button>
-            </div>
+            ))}
           </div>
 
           <button
             onClick={() => scrollToSection('about')}
-            className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+            className="block w-full rounded-xl px-4 py-3 text-left font-medium text-fg-muted transition-colors hover:bg-surface hover:text-fg"
           >
             {translations.nav.about}
           </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="block w-full text-left px-4 py-3 text-white bg-primary hover:bg-secondary rounded-lg transition-colors font-medium"
-          >
-            {translations.nav.contact}
-          </button>
           <Link
             href="/digital-marketing"
-            className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
-              pathname === '/digital-marketing'
-                ? 'text-primary bg-gray-50'
-                : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-            }`}
+            className="block w-full rounded-xl px-4 py-3 text-left font-medium text-fg-muted transition-colors hover:bg-surface hover:text-fg"
             onClick={() => setIsOpen(false)}
-            aria-current={pathname === '/digital-marketing' ? 'page' : undefined}
           >
             {translations.nav.digitalMarketing}
           </Link>
           <Link
             href="/web-development"
-            className={`block w-full text-left px-4 py-3 rounded-lg transition-colors font-medium ${
-              pathname === '/web-development'
-                ? 'text-primary bg-gray-50'
-                : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-            }`}
+            className="block w-full rounded-xl px-4 py-3 text-left font-medium text-fg-muted transition-colors hover:bg-surface hover:text-fg"
             onClick={() => setIsOpen(false)}
-            aria-current={pathname === '/web-development' ? 'page' : undefined}
           >
             {translations.nav.webDevelopment}
           </Link>
+          <button
+            onClick={() => {
+              setIsOpen(false)
+              scrollToSection('contact')
+            }}
+            className="mt-2 block w-full rounded-xl bg-highlight px-4 py-3 text-center font-semibold text-highlight-fg"
+          >
+            {translations.nav.contact}
+          </button>
         </div>
       </div>
     </nav>
   )
 }
-

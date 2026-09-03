@@ -1,123 +1,32 @@
-'use client'
+import ServicePage from '../components/ServicePage'
+import { getDictionary, getLanguage } from '../lib/i18n'
 
-import { motion } from 'framer-motion'
-import { useLanguage } from '../../context/LanguageContext'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+const icons = [
+  // SEO & Content — magnifier / chart
+  <path key="seo" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M11 6a5 5 0 015 5m2 0a7 7 0 10-14 0 7 7 0 0014 0z" />,
+  // Social Media — share nodes
+  <path key="social" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />,
+  // Paid Advertising — target
+  <path key="ads" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9 9 0 100-18 9 9 0 000 18zm0-4a5 5 0 100-10 5 5 0 000 10zm0-4a1 1 0 100-2 1 1 0 000 2z" />,
+  // Email Marketing — envelope
+  <path key="email" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />,
+  // Conversion Rate — funnel / trending up
+  <path key="cro" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 4h18M6 8h12M9 12h6m-5 4h4m-3 4h2" />,
+]
 
-export default function DigitalMarketingPage() {
-  const { translations } = useLanguage()
-  const { digitalMarketing } = translations
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1] as const,
-      },
-    },
-  }
+export default async function DigitalMarketingPage() {
+  const language = await getLanguage()
+  const t = getDictionary(language)
 
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6"
-            >
-              {digitalMarketing.hero.title}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 leading-relaxed"
-            >
-              {digitalMarketing.hero.subtitle}
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* 5 Marketing Sections */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            className="space-y-24"
-          >
-            {digitalMarketing.sections.map((section, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12`}
-              >
-                <div className="flex-1 space-y-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary font-bold text-xl mb-2">
-                    {index + 1}
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{section.title}</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">{section.description}</p>
-                  <ul className="space-y-3">
-                    {section.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center text-gray-700">
-                        <svg
-                          className="w-5 h-5 text-primary mr-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex-1 w-full">
-                  <div className="aspect-video bg-gray-100 rounded-3xl overflow-hidden shadow-inner flex items-center justify-center border border-gray-100 group">
-                    {/* Placeholder for visual element */}
-                    <div className="text-primary/20 group-hover:scale-110 transition-transform duration-500">
-                      <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
+    <ServicePage
+      eyebrow="Digital marketing"
+      hero={t.digitalMarketing.hero}
+      sections={t.digitalMarketing.sections}
+      icons={icons}
+      footer={t.footer}
+      nav={t.nav}
+      waitlistLabel={t.waitlist.form.submit}
+    />
   )
 }
