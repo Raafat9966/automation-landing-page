@@ -1,14 +1,14 @@
-import { ReactNode } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Reveal from './ui/Reveal'
+import ServiceVisual, { type ServiceVisualKind } from './ServiceVisual'
 import type { Translations } from '../../translations/types'
 
 interface ServicePageProps {
   eyebrow: string
   hero: { title: string; subtitle: string }
   sections: Array<{ title: string; description: string; features: string[] }>
-  icons: ReactNode[]
+  visuals: ServiceVisualKind[]
   footer: Translations['footer']
   nav: Translations['nav']
   waitlistLabel: string
@@ -18,7 +18,7 @@ export default function ServicePage({
   eyebrow,
   hero,
   sections,
-  icons,
+  visuals,
   footer,
   nav,
   waitlistLabel,
@@ -70,8 +70,19 @@ export default function ServicePage({
                   <ul className="space-y-2.5">
                     {section.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3 text-fg">
-                        <svg className="h-5 w-5 flex-shrink-0 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <svg
+                          className="h-5 w-5 flex-shrink-0 text-primary"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                         {feature}
                       </li>
@@ -79,13 +90,7 @@ export default function ServicePage({
                   </ul>
                 </div>
                 <div className="w-full flex-1">
-                  <div className="group flex aspect-video items-center justify-center overflow-hidden rounded-5xl border border-border bg-gradient-to-br from-surface to-card shadow-soft">
-                    <div className="text-primary/25 transition-transform duration-500 group-hover:scale-110">
-                      <svg className="h-24 w-24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        {icons[0]}
-                      </svg>
-                    </div>
-                  </div>
+                  <ServiceVisual kind={visuals[index]} label={section.title} />
                 </div>
               </Reveal>
             ))}
