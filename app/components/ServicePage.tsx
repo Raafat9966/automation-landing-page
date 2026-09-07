@@ -82,7 +82,7 @@ export default function ServicePage({
                   <div className="group flex aspect-video items-center justify-center overflow-hidden rounded-5xl border border-border bg-gradient-to-br from-surface to-card shadow-soft">
                     <div className="text-primary/25 transition-transform duration-500 group-hover:scale-110">
                       <svg className="h-24 w-24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        {icons[index]}
+                        {icons[0]}
                       </svg>
                     </div>
                   </div>

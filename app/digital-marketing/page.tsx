@@ -3,7 +3,7 @@ import { getDictionary, getLanguage } from '../lib/i18n'
 
 const icons = [
   // SEO & Content — magnifier / chart
-  <path key="seo" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M11 6a5 5 0 015 5m2 0a7 7 0 10-14 0 7 7 0 0014 0z" />,
+  <path key="lightning" fill="currentColor" d="M13 10V3L4 14h7v7l9-11h-7z" />,
   // Social Media — share nodes
   <path key="social" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />,
   // Paid Advertising — target
