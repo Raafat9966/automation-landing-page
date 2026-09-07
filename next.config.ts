@@ -2,6 +2,15 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
+  allowedDevOrigins: ['192.168.178.45'],
+  experimental: {
+    optimizePackageImports: ['framer-motion'],
+  },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   async headers() {
     return [
       {
@@ -13,10 +22,14 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      {
+        source: '/:all*(svg|jpg|jpeg|png|webp|avif|woff2)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
     ]
   },
 }
-module.exports = {
-  allowedDevOrigins: ['192.168.178.45'],
-}
+
 export default nextConfig

@@ -2,38 +2,183 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling and navbar offset */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+/* ------------------------------------------------------------------ *
+ * Design tokens
+ * ------------------------------------------------------------------ */
+:root {
+  --bg: 0 0% 100%;
+  --surface: 210 40% 98%;
+  --card: 0 0% 100%;
+  --border: 214 32% 91%;
+  --fg: 222 47% 11%;
+  --fg-muted: 215 19% 39%;
+  --ring: 189 47% 42%;
+  --shadow: 222 47% 25%;
+
+  --primary: 189 47% 42%;
+  --primary-fg: 0 0% 100%;
+  --secondary: 177 43% 63%;
+  --accent: 38 100% 84%;
+  --highlight: 7 93% 67%;
+  --highlight-fg: 0 0% 100%;
+
+  color-scheme: light;
 }
 
-/* Accessibility: focus-visible states */
+.dark {
+  --bg: 222 47% 7%;
+  --surface: 222 44% 10%;
+  --card: 222 40% 13%;
+  --border: 217 33% 19%;
+  --fg: 210 40% 96%;
+  --fg-muted: 215 20% 66%;
+  --ring: 177 43% 63%;
+  --shadow: 222 60% 2%;
+
+  --primary: 187 55% 55%;
+  --primary-fg: 222 47% 9%;
+  --secondary: 177 43% 63%;
+  --accent: 38 90% 78%;
+  --highlight: 7 90% 68%;
+  --highlight-fg: 222 47% 9%;
+
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
 @layer base {
-  button:focus-visible, 
-  a:focus-visible, 
-  input:focus-visible, 
-  select:focus-visible, 
-  textarea:focus-visible {
-    @apply outline-none ring-2 ring-offset-2 ring-primary;
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    /* Offset hash / scrollIntoView targets by the fixed navbar height so a
+     * section lands snug under it. This is the single source of truth for that
+     * offset — section elements must NOT also set scroll-margin-top. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: hsl(var(--primary)) transparent;
+  }
+
+  /*
+   * NOTE: no global `scroll-behavior: smooth` here. It makes the App Router's
+   * scroll-to-top on navigation animate, which races page-load layout shifts
+   * and leaves route changes (e.g. the Digital Marketing / Web Development nav
+   * links) parked at a random offset. In-page smooth scrolls are requested
+   * explicitly via scrollIntoView({ behavior: 'smooth' }).
+   */
+
+  body {
+    background-color: hsl(var(--bg));
+    color: hsl(var(--fg));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.25);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Themed scrollbar (WebKit) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.7);
+    border-radius: 999px;
+    border: 2px solid hsl(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
   }
 }
 
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+@layer utilities {
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary)),
+      hsl(var(--highlight))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.6) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-aurora {
+    background:
+      radial-gradient(40% 55% at 20% 20%, hsl(var(--primary) / 0.55), transparent 70%),
+      radial-gradient(35% 45% at 80% 15%, hsl(var(--secondary) / 0.5), transparent 70%),
+      radial-gradient(45% 50% at 65% 85%, hsl(var(--highlight) / 0.4), transparent 70%),
+      hsl(var(--bg));
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+/* ------------------------------------------------------------------ *
+ * Scroll reveal (progressive enhancement)
+ * ------------------------------------------------------------------ */
+.reveal {
+  opacity: 1;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #3F9AAE;
-  border-radius: 5px;
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal--in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #2d7a8a;
+/* Kill decorative motion for users who ask for it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
-

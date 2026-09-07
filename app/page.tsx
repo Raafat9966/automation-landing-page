@@ -6,19 +6,24 @@ import EducationalSection from './components/EducationalSection'
 import About from './components/About'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
+import { getDictionary, getLanguage } from './lib/i18n'
 
-export default function Home() {
+export default async function Home() {
+  const language = await getLanguage()
+  const t = getDictionary(language)
+
   return (
-    <main id="main-content" className="min-h-screen bg-white">
+    <>
       <Navbar />
-      <Hero />
-        <AutomationFlowSection />
-        <EducationalSection />
-      <WorkflowCards />
-      <About />
-      <ContactForm />
-      <Footer />
-    </main>
+      <main id="main-content">
+        <Hero />
+        <AutomationFlowSection t={t.automationFlow} />
+        <EducationalSection t={t.education} />
+        <WorkflowCards />
+        <About t={t.about} />
+        <ContactForm />
+        <Footer t={t.footer} nav={t.nav} waitlistLabel={t.waitlist.form.submit} />
+      </main>
+    </>
   )
 }
-
