@@ -28,10 +28,10 @@ const socials = [
 export default function Footer({ t, nav, waitlistLabel }: FooterProps) {
   const currentYear = new Date().getFullYear()
   const links = [
-    { href: '#home', label: nav.home },
-    { href: '#workflows', label: nav.workflows },
-    { href: '#about', label: nav.about },
-    { href: '#contact', label: nav.contact },
+    { href: '/#home', label: nav.home },
+    { href: '/#workflows', label: nav.workflows },
+    { href: '/#about', label: nav.about },
+    { href: '/#contact', label: nav.contact },
   ]
 
   return (
