@@ -104,11 +104,15 @@ export default function WaitingList() {
   return (
     <AnimatePresence>
       {isWaitlistModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+        <m.div
+          key="waitlist-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+        >
+          <div
             onClick={() => setIsWaitlistModalOpen(false)}
             className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
           />
@@ -118,10 +122,10 @@ export default function WaitingList() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="waitlist-modal-title"
-            initial={{ opacity: 0, scale: 0.95, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
             className="relative w-full max-w-2xl overflow-hidden rounded-5xl border border-border bg-card shadow-lift"
           >
             <button
@@ -275,7 +279,7 @@ export default function WaitingList() {
               </AnimatePresence>
             </div>
           </m.div>
-        </div>
+        </m.div>
       )}
     </AnimatePresence>
   )
